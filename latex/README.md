@@ -1,6 +1,8 @@
 # Baby Record Book (LaTeX, A4)
 
 From the first scan to five years: family tree, pregnancy, birth, growth charts, health, India (IAP) vaccines, teeth, milestones, months 1–12, holidays, letters and years 1–5.
+Warm-paper editorial layout with colour-coded chapters, a pregnancy journey,
+numbered milestone cards, and separate first-year / years 1–5 growth plots.
 
 ## Build
 
@@ -25,7 +27,7 @@ fictional example data is tracked.
 Rules:
 
 - A missing, empty or `null` key prints a blank line, so you can fill the book in gradually.
-- Growth values (`growth.<age in months>`) are plain numbers in kg and cm. They feed the growth charts, the growth log, the month pages and the year pages.
+- Growth values (`growth.<age in months>`) are plain numbers in kg and cm. They feed the split 0–12 / 12–60 month growth charts, the growth log, the month pages and the year pages.
 - `birth.delivery` is one of `natural`, `assisted`, `c-section`, `water`, `home`, `other`.
 - `familyHistory.<condition>.mom` and `.dad` are `true` or `false` and show as ticks.
 - Vaccines use `vaccines.<id>.{date,batch,notes}`. The ids are listed in `parts/04-growth-health.tex`. Add anything else to `vaccinesExtra[]`.

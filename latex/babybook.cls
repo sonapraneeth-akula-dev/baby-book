@@ -6,8 +6,8 @@
 \RequirePackage[a4paper,margin=18mm,top=20mm,bottom=22mm]{geometry}
 \RequirePackage[T1]{fontenc}
 \RequirePackage{nunito}
-\RequirePackage{comfortaa}
-\renewcommand\familydefault{\sfdefault}
+\RequirePackage{tgpagella}
+\renewcommand\familydefault{Nunito-TLF}
 \RequirePackage[table]{xcolor}
 \RequirePackage{fontawesome5}
 \RequirePackage{graphicx,tabularx,array,colortbl}
@@ -19,48 +19,45 @@
 \pdfstringdefDisableCommands{\def\\{ }}
 \RequirePackage{babydata}
 
-\newcommand\headfont{\comfortaa\bfseries}
-\newcommand\valuefont{\comfortaa\color{ink}}   % how filled-in data looks
+\newcommand\headfont{\fontfamily{qpl}\selectfont\bfseries}
+\newcommand\valuefont{\bfseries\color{ink}}   % how filled-in data looks
 \newcommand\bbphotodir{photos/}                % photo file names in JSON are relative to this
 \raggedbottom\setlength\parindent{0pt}
 \AtBeginDocument{\color{ink}}
 
 % ---------- palette ----------
-\definecolor{ink}{HTML}{4A4A5A}
-\definecolor{blush}{HTML}{FAD4DC}  \definecolor{rose}{HTML}{E0839A}
-\definecolor{mint}{HTML}{CBEBDD}   \definecolor{sea}{HTML}{4FA88C}
-\definecolor{sky}{HTML}{D3E5F7}    \definecolor{ocean}{HTML}{5B8FC9}
-\definecolor{lav}{HTML}{E4D9F4}    \definecolor{plum}{HTML}{9577C2}
-\definecolor{peach}{HTML}{FFE0C7}  \definecolor{coral}{HTML}{EE9464}
-\definecolor{butter}{HTML}{FFF3C4} \definecolor{honey}{HTML}{E8B53C}
+\definecolor{ink}{HTML}{293C3A}   \definecolor{paper}{HTML}{FCFAF5}
+\definecolor{blush}{HTML}{F3E5DF} \definecolor{rose}{HTML}{AC5F58}
+\definecolor{mint}{HTML}{E3EDE4}  \definecolor{sea}{HTML}{427765}
+\definecolor{sky}{HTML}{E2ECEC}   \definecolor{ocean}{HTML}{406F78}
+\definecolor{lav}{HTML}{EEE8EF}   \definecolor{plum}{HTML}{795F80}
+\definecolor{peach}{HTML}{F8E8DA} \definecolor{coral}{HTML}{BF704D}
+\definecolor{butter}{HTML}{F8EDCE}\definecolor{honey}{HTML}{AD813E}
 \newcommand\settheme[2]{\colorlet{theme}{#1}\colorlet{themelight}{#2}}
 \settheme{rose}{blush}
 \def\grandpaname{Grandpa}\def\handname{hand}
 
-% ---------- page background: soft blobs, stars, heart page number ----------
+% ---------- warm paper and restrained page furniture ----------
 \pagestyle{empty}
-\AddToHook{shipout/background}{\ifnum\value{page}>1
-  \put(0,0){\begin{tikzpicture}[overlay,x=1mm,y=1mm]
-    \fill[themelight,opacity=.55] (0,0) circle (28);
-    \fill[themelight,opacity=.35] (22,-6) circle (12);
-    \fill[themelight,opacity=.55] (210,-297) circle (32);
-    \fill[themelight,opacity=.35] (186,-291) circle (13);
-    \foreach \x/\y/\s in {196/-10/1.6, 203/-22/1, 8/-285/1.4, 18/-291/.9}
-      \node[text=theme!45,scale=\s] at (\x,\y) {\faStar};
-    \node[text=theme,scale=2.1] at (105,-284) {\faHeart};
-    \node[text=white,font=\scriptsize\bfseries] at (105,-284.3) {\thepage};
-  \end{tikzpicture}}\fi}
+\AddToHook{shipout/background}{\put(0,0){\begin{tikzpicture}[overlay,x=1mm,y=1mm]
+  \fill[paper] (0,0) rectangle (210,-297);
+  \ifnum\value{page}>1
+    \fill[theme] (18,-11) rectangle (27,-12);
+    \draw[theme!35,line width=.5pt] (30,-11.5) -- (192,-11.5);
+    \draw[theme!35,line width=.5pt] (18,-282) -- (192,-282);
+    \node[anchor=east,text=theme,font=\headfont\small] at (191,-287) {\thepage};
+  \fi
+\end{tikzpicture}}}
 
 % ---------- building blocks ----------
-% page title ribbon (also a TOC entry)
+% page title (also a TOC entry)
 \newcommand\pagetitle[2][\faStar]{\clearpage\phantomsection
   \addcontentsline{toc}{section}{#2}%
-  \begin{center}\begin{tikzpicture}
-    \node[fill=theme,text=white,rounded corners=14pt,inner xsep=18pt,inner ysep=9pt,
-          font=\headfont\LARGE] (t) {#1\enspace #2};
-    \node[text=theme!50,left=3mm of t] {\faHeart};
-    \node[text=theme!50,right=3mm of t] {\faHeart};
-  \end{tikzpicture}\end{center}\vspace{-2mm}}
+  \noindent\begin{minipage}[c]{12mm}\centering\color{theme}\large #1\end{minipage}%
+  \hspace{3mm}\begin{minipage}[c]{\dimexpr\linewidth-15mm\relax}
+    {\headfont\LARGE\color{ink}#2}
+  \end{minipage}\par\vspace{2mm}
+  {\color{theme}\rule{\linewidth}{1pt}}\par\vspace{4mm}}
 \newcommand\bookcontents{\@starttoc{toc}}
 
 % label + value + fill-in line: \field[width]{label}{key}
@@ -96,19 +93,19 @@
 \newcommand\photobox[4]{\begin{tikzpicture}
   \coordinate (c) at ($(0,0)!.5!(#2,#3)$);
   \bb@ifphoto{#1}{%
-    \begin{scope}\clip[rounded corners=8pt] (0,0) rectangle (#2,#3);
+    \begin{scope}\clip[rounded corners=2pt] (0,0) rectangle (#2,#3);
       \node[inner sep=0] at (c) {\bb@cover{#2}{#3}};\end{scope}
-    \draw[theme,line width=1pt,rounded corners=8pt] (0,0) rectangle (#2,#3);}
-   {\draw[theme,dashed,line width=1pt,rounded corners=8pt,fill=themelight!30] (0,0) rectangle (#2,#3);
-    \node[text=theme!55,font=\Huge] at (c) {\faCamera};}
-  \node[below,font=\small\itshape,text=ink] at ($(0,0)!.5!(#2,0)$) {#4};
+    \draw[theme!65,line width=.8pt,rounded corners=2pt] (0,0) rectangle (#2,#3);}
+   {\draw[theme!65,dashed,line width=.8pt,rounded corners=2pt,fill=themelight!35] (0,0) rectangle (#2,#3);
+    \node[text=theme!60,font=\Huge] at (c) {\faCamera};}
+  \node[below,font=\footnotesize\bfseries,text=theme] at ($(0,0)!.5!(#2,0)$) {#4};
   \end{tikzpicture}}
 
-% rounded card with boxed title
-\newtcolorbox{card}[2][]{enhanced,colback=white,colframe=theme,boxrule=.9pt,arc=4mm,
-  fonttitle=\headfont\large,coltitle=white,colbacktitle=theme,
-  attach boxed title to top left={xshift=4mm,yshift=-3mm},
-  boxed title style={arc=3mm,boxrule=0pt},top=5mm,title={#2},#1}
+% lightly framed cards with a section marker
+\newtcolorbox{card}[2][]{enhanced,colback=white,colframe=theme!45,boxrule=.65pt,arc=1.5mm,
+  borderline west={2pt}{0pt}{theme},fonttitle=\headfont\large,coltitle=ink,colbacktitle=white,
+  attach boxed title to top left={xshift=4mm,yshift=-2.5mm},
+  boxed title style={arc=0pt,boxrule=0pt,colback=white},top=6mm,title={#2},#1}
 % \notecard[opts]{title}{lines}{key}
 \newcommand\notecard[4][]{\begin{card}[#1]{#2}\vspace{-3mm}\writelines{#3}{#4}\end{card}}
 
@@ -117,7 +114,7 @@
 % icon tile for rasters: {icon}{label}{content}
 \newcommand\icontile[3]{\tile{\centering{\color{theme}\huge #1}\par\smallskip
   {\headfont #2}\par\raggedright\vspace{3mm}#3\par}}
-\tcbset{tiles/.style={raster equal height,colback=white,colframe=theme!70,arc=3mm,boxrule=.8pt,
+\tcbset{tiles/.style={raster equal height,colback=themelight!18,colframe=theme!40,arc=1.5mm,boxrule=.65pt,
   raster column skip=3mm,raster row skip=3mm}}
 \newcommand\chk{{\color{theme}\faSquare[regular]}\ }
 \newcommand\chkyes{{\color{theme}\faCheckSquare}\ }
@@ -127,13 +124,21 @@
   \phantomsection{\let\\\space\addcontentsline{toc}{chapter}{#1\quad #2}}%
   \begin{tikzpicture}[remember picture,overlay]
     \fill[themelight] (current page.south west) rectangle (current page.north east);
-    \foreach \x/\y/\r in {.15/.85/3, .85/.78/2, .2/.2/2.5, .8/.15/3.5, .5/.95/1.2}
-      \fill[white,opacity=.5] ($(current page.south west)+(\x*21cm,\y*29.7cm)$) circle (\r);
-    \node[circle,fill=theme,text=white,minimum size=3.2cm,font=\headfont\fontsize{60}{60}\selectfont]
-      (n) at ($(current page.center)+(0,5.5)$) {#1};
-    \node[font=\headfont\fontsize{36}{40}\selectfont,text=theme,below=10mm of n,align=center] (t) {#2};
-    \node[font=\Large\itshape,text=ink,below=5mm of t,align=center,text width=14cm] (s) {#3};
-    \node[below=14mm of s,text=theme,font=\fontsize{44}{44}\selectfont] {#6};
+    \fill[theme] (current page.south west) rectangle ($(current page.north west)+(1.5cm,0)$);
+    \draw[theme!35,line width=1pt] ($(current page.north west)+(4cm,-5cm)$) --
+      ($(current page.north east)+(-2cm,-5cm)$);
+    \draw[theme!35,line width=1pt] ($(current page.north east)+(-1cm,-2cm)$) circle (3cm);
+    \draw[theme!35,line width=1pt] ($(current page.north east)+(-1cm,-2cm)$) circle (2.2cm);
+    \node[anchor=west,font=\small\bfseries,text=theme] at
+      ($(current page.north west)+(4cm,-4cm)$) {A CHAPTER OF OUR STORY};
+    \node[anchor=west,font=\headfont\fontsize{88}{92}\selectfont,text=theme] at
+      ($(current page.north west)+(3.8cm,-9cm)$) {#1};
+    \node[anchor=north west,font=\headfont\fontsize{37}{44}\selectfont,text=ink,
+      align=left,text width=14cm] (t) at ($(current page.north west)+(4cm,-12.6cm)$) {#2};
+    \node[anchor=north west,font=\Large\itshape,text=ink,align=left,text width=12cm]
+      at ($(t.south west)+(0,-8mm)$) {#3};
+    \node[anchor=west,text=theme,font=\fontsize{31}{31}\selectfont] at
+      ($(current page.south west)+(4cm,4cm)$) {#6};
   \end{tikzpicture}\clearpage}
 
 % round portrait (photo if given): \portrait[size]{node}{x,y}{colour}{icon}{photo key}

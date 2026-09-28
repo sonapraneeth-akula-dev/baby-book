@@ -13,17 +13,30 @@
     \node[font=\headfont\small,text=theme] at (\x,-.45) {\a};
     \node[font=\scriptsize,align=center] at (\x,-1.3) {\bbor{growth.\m.length}{\rule{1.2cm}{.3pt}} cm\\[2mm]\bbor{growth.\m.weight}{\rule{1.2cm}{.3pt}} kg};}
 \end{tikzpicture}\end{center}\vspace{2mm}
-\pgfplotsset{growth/.style={width=\linewidth,height=4.8cm,xmin=0,xmax=60,xtick={0,6,...,60},
-  minor x tick num=1,minor y tick num=1,grid=both,major grid style={theme!35},minor grid style={theme!15},
-  axis line style={theme},tick style={theme},label style={font=\small\bfseries,text=theme},
-  xlabel={Age (months)},tick label style={font=\scriptsize},clip=false}}
+\pgfplotsset{growth/.style={width=\linewidth,height=4.5cm,
+  grid=major,major grid style={theme!22},axis line style={theme!60},tick style={theme!60},
+  label style={font=\scriptsize\bfseries,text=theme},ylabel style={font=\scriptsize},
+  tick label style={font=\tiny},clip=true}}
 % \growthchart{field}{ymin}{ymax}{yticks}{ylabel}{title}
 \newcommand\growthchart[6]{\gdef\gcoords{}%
   \foreach\m in\growthages{\bbget\gv{growth.\m.#1}\ifx\gv\empty\else\xdef\gcoords{\gcoords(\m,\gv)}\fi}%
-  \begin{tikzpicture}\begin{axis}[growth,ymin=#2,ymax=#3,ytick={#4},ylabel={#5},title={\headfont #6},title style={text=theme}]
-  \ifx\gcoords\empty\addplot[draw=none] coordinates {(0,#2)};\else
-  \edef\gplot{\noexpand\addplot[coral,very thick,mark=*,mark options={fill=white}] coordinates {\gcoords};}\gplot\fi
-  \end{axis}\end{tikzpicture}}
+  \ifx\gcoords\empty\let\gplot\relax\else
+    \edef\gplot{\noexpand\addplot[coral,thick,mark=*,mark size=1.5pt] coordinates {\gcoords};}\fi
+  {\headfont\large\color{theme}#6}\par\vspace{1mm}
+  \noindent\begin{minipage}[t]{.49\linewidth}\centering
+    {\footnotesize\bfseries First year \textbullet\ months}
+    \begin{tikzpicture}\begin{axis}[growth,xmin=0,xmax=12,xtick={0,2,...,12},
+      ymin=#2,ymax=#3,ytick={#4},ylabel={#5},xlabel={Age in months}]
+      \gplot
+    \end{axis}\end{tikzpicture}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{.49\linewidth}\centering
+    {\footnotesize\bfseries Years 1--5 \textbullet\ months}
+    \begin{tikzpicture}\begin{axis}[growth,xmin=12,xmax=60,xtick={12,24,...,60},
+      ymin=#2,ymax=#3,ytick={#4},xlabel={Age in months}]
+      \gplot
+    \end{axis}\end{tikzpicture}
+  \end{minipage}\par\vspace{2mm}}
 \growthchart{weight}{2}{24}{2,4,...,24}{Weight (kg)}{Weight}\par\vspace{2mm}
 \growthchart{length}{45}{120}{45,55,...,115}{Length / height (cm)}{Length \& height}\par\vspace{2mm}
 \growthchart{head}{30}{54}{30,34,...,54}{Head (cm)}{Head circumference}
@@ -88,7 +101,7 @@ pentavalent shot -- note the same date on each row. Government (UIP) centres use
   je1/{9--12 m&Japanese encephalitis-1 (endemic areas)}, je2/{16--24 m&Japanese encephalitis-2}}
 % anything else (meningococcal, cholera, catch-up doses...): vaccinesExtra[] with age,vaccine,date,batch,notes
 \addarrayrows{vaccinesExtra}{age,vaccine,date,batch,notes}{3}
-\vaccinetable{1.5}
+\vaccinetable{1.35}
 \par\vspace{2mm}{\footnotesize\itshape UIP centres give MR (not MMR) at 9--12 and 16--24 months, DPT and OPV boosters at 16--24 months,
 DPT at 5--6 years, JE in endemic districts and Vitamin A every 6 months from 9 months to 5 years.\par}
 

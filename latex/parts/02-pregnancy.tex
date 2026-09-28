@@ -15,30 +15,29 @@
   \end{tabularx}\end{card}
 
 \pagetitle[\faApple*]{How You Grew Inside Me}
-{\centering\begin{tikzpicture}[x=.43cm]
-  % trimester band
-  \foreach \a/\b/\c/\t in {0/13/rose/1st trimester, 13/27/coral/2nd trimester, 27/40/plum/3rd trimester}{
-    \fill[\c!35,rounded corners=3pt] (\a,0) rectangle (\b,.7);
+{\centering\begin{tikzpicture}[x=.4cm,y=1cm]
+  \node[anchor=west,font=\small\bfseries,text=theme] at (0,2.7) {A LITTLE BIG JOURNEY \quad \textnormal{\itshape size comparisons}};
+  \foreach \w/\f in {4/poppy seed,8/raspberry,12/lime,16/avocado,20/banana,
+                     24/corn cob,28/aubergine,32/squash,36/papaya,40/watermelon}{
+    \fill[theme] (\w,1.1) circle (2pt);
+    \node[font=\tiny,align=center,text width=1.5cm,anchor=south]
+      at (\w,1.25) {\f};}
+  \foreach \a/\b/\c/\t in {0/13/rose/1st trimester,13/27/coral/2nd trimester,27/40/plum/3rd trimester}{
+    \fill[\c!30] (\a,0) rectangle (\b,.7);
     \node[font=\small\bfseries,text=\c] at ({(\a+\b)/2},.35) {\t};}
-  \foreach \w in {0,4,...,40} {\draw[ink!60] (\w,0) -- (\w,-.15) node[below,font=\scriptsize] {\w};}
-  \node[font=\scriptsize,anchor=west] at (40.5,-.35) {weeks};
-  % size of baby, fruit comparisons
-  \foreach \w/\r/\f in {4/.06/poppy seed, 8/.12/raspberry, 12/.22/lime, 16/.3/avocado, 20/.38/banana,
-                        24/.46/corn cob, 28/.55/aubergine, 32/.64/squash, 36/.73/papaya, 40/.82/watermelon}{
-    \fill[sea!60] (\w,2.1) circle[radius=\r cm];
-    \node[font=\scriptsize,align=center,text width=1.5cm] at (\w,3.5) {\f};}
-  \node[font=\small\itshape,anchor=west] at (-.4,4.5) {You were about the size of a\ldots};
-  % milestone flags: pregnancy.timeline.<id>.{week,date}
-  \foreach \w/\h/\t/\id in {5/-1.3/We found out/found, 9/-2.6/First heartbeat/heartbeat, 12/-3.9/First scan/firstScan,
-                        20/-1.3/Halfway scan/halfway, 18/-2.6/First kick/kick, 28/-3.9/Hiccups!/hiccups,
-                        32/-1.3/Baby shower/shower, 36/-2.6/Bag packed/bag, 40/-3.9/Due date/due}{
-    \draw[theme!60] (\w,-.5) -- (\w,\h+.35);
-    \fill[theme] (\w,-.5) circle (2pt);
-    \node[fill=white,draw=theme!60,rounded corners=3pt,font=\scriptsize,align=center,inner sep=2pt]
-      at (\w,\h) {\bfseries\t\\[-.5mm]wk \bbor{pregnancy.timeline.\id.week}{\rule{5mm}{.3pt}}\
-        \bbor{pregnancy.timeline.\id.date}{\rule{9mm}{.3pt}}};}
+  \foreach \w in {0,4,...,40}
+    \node[font=\scriptsize,anchor=north,text=ink] at (\w,-.13) {\w};
 \end{tikzpicture}\par}
-\vspace{5mm}
+\vspace{3mm}
+{\headfont\large\color{theme}Moments along the way}\par\vspace{2mm}
+\begin{tcbraster}[tiles,raster columns=3,raster row skip=2mm]
+\foreach \w/\t/\id in {5/We found out/found,9/First heartbeat/heartbeat,12/First scan/firstScan,
+  18/First kick/kick,20/Halfway scan/halfway,28/Hiccups!/hiccups,
+  32/Baby shower/shower,36/Bag packed/bag,40/Due date/due}{
+  \tile{{\small\bfseries\color{theme}WEEK \bbor{pregnancy.timeline.\id.week}{\w}}\par
+    {\headfont\color{ink}\t}\par\smallskip
+    {\footnotesize\bbor{pregnancy.timeline.\id.date}{\rule{2.5cm}{.4pt}}}}}
+\end{tcbraster}\vspace{3mm}
 \begin{tcbraster}[tiles,raster columns=3]
 \icontile{\faIceCream}{Cravings}{\writelines{3}{pregnancy.cravings}}
 \icontile{\faTired}{Symptoms}{\writelines{3}{pregnancy.symptoms}}
