@@ -1,0 +1,31 @@
+% ================= COVER =================
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[sky!70] (current page.south west) rectangle (current page.north east);
+  \fill[blush!80] ($(current page.south west)+(0,0)$) rectangle ($(current page.south east)+(0,7)$);
+  \foreach \x/\r in {0/1.6,2.5/1.3,5/1.9,8.2/1.4,11/2,14/1.5,16.8/1.9,19.6/1.5,21.5/1.3}
+     \fill[white] ($(current page.south west)+(\x,7)$) circle (\r);
+  \node[text=butter,font=\fontsize{90}{90}\selectfont] at ($(current page.north east)+(-4,-4.5)$) {\faMoon};
+  \foreach \x/\y/\s in {3/-3/2, 6/-6/1.2, 10/-2.5/1.6, 14/-6.5/1, 2.5/-10/1.1, 18/-11/1.4, 8/-11.5/.9}
+     \node[text=white,scale=\s] at ($(current page.north west)+(\x,\y)$) {\faStar};
+  \node[circle,fill=white,minimum size=7.5cm] (b) at ($(current page.center)+(0,1)$) {};
+  \node[text=rose,font=\fontsize{120}{120}\selectfont] at (b) {\faBaby};
+  \foreach \a/\c in {30/rose,150/ocean,270/sea} \node[text=\c,scale=2] at ($(b)+(\a:4.3)$) {\faHeart};
+  \node[font=\headfont\fontsize{46}{50}\selectfont,text=ocean] at ($(current page.north)+(0,-4)$) {Our Little One};
+  \node[font=\Large\itshape,text=ink,align=center] at ($(b.south)+(0,-1.4)$)
+     {A Baby Record Book\\[1mm]\normalsize from the very first scan to five years old};
+  \node[font=\headfont\LARGE,text=ink] at ($(current page.south)+(0,4.2)$) {\bbor{baby.name}{\rule{9cm}{.6pt}}};
+  \node[font=\small,text=ink] at ($(current page.south)+(0,3.3)$) {my name};
+\end{tikzpicture}
+\clearpage
+
+% ================= CONTENTS =================
+\pagetitle[\faBookOpen]{What's Inside}
+\bookcontents
+\clearpage
+
+\pagetitle[\faHeart]{This Book Belongs To}
+\begin{center}\photobox{baby.photo}{9cm}{9cm}{my very first photo}\end{center}\vspace{6mm}
+\fields{Full name}{baby.fullName}{Nickname(s)}{baby.nickname}
+\fields{Born on}{baby.bornOn}{Born in}{baby.bornIn}
+\field{My name means}{baby.nameMeaning}\par\vspace{2.2mm}
+\notecard{How we chose your name}{6}{baby.nameStory}

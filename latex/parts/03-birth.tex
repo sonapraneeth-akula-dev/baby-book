@@ -1,0 +1,78 @@
+% ================= PART 1 (cont.): birth & arrival =================
+\pagetitle[\faBaby]{Hello, World!}
+\begin{center}\begin{tikzpicture}
+  \node[circle,fill=themelight,minimum size=6.2cm] (c) {};
+  \node[circle,draw=theme,dashed,line width=1pt,minimum size=5.6cm] at (c) {};
+  \node[text=theme,font=\fontsize{80}{80}\selectfont] at ($(c)+(0,.3)$) {\faBaby};
+  \node[font=\headfont\large,text=theme] at ($(c)+(0,-2)$) {I'm here!};
+  % birth.<key>
+  \foreach \a/\i/\t/\col/\k in {90/\faCalendar*/Date/rose/date, 45/\faClock/Time/coral/time, 0/\faWeightHanging/Weight/honey/weight,
+      -45/\faRulerVertical/Length/sea/length, -90/\faHospital/Place/ocean/place, -135/\faCircleNotch/Head/plum/head,
+      180/\faEye/Eye colour/ocean/eyes, 135/\faCut/Hair colour/rose/hair}{
+    \draw[\col!60,line width=1pt] (c) ++(\a:3.1) -- ++(\a:.9);
+    \node[circle,fill=white,draw=\col,line width=1.5pt,minimum size=2.9cm,align=center,text width=2.3cm] at ($(c)+(\a:5.4)$)
+      {{\color{\col}\LARGE\i}\\[1mm]{\headfont\small\t}\\[3mm]{\footnotesize\bbor{birth.\k}{{\color{\col!50}\rule{2cm}{.5pt}}}}};}
+\end{tikzpicture}\end{center}
+\vspace{2mm}
+\fields{Doctor / midwife}{birth.doctor}{Who was there}{birth.present}
+\field{First words said when you arrived}{birth.firstWords}\par\vspace{2mm}
+\photobox{birth.photo}{\linewidth}{4.5cm}{our first photo together}
+
+\pagetitle[\faBookMedical]{Your Birth Story}
+\begin{card}{Delivery}
+  \chkif{birth.delivery}{natural}Natural\quad\chkif{birth.delivery}{assisted}Assisted\quad
+  \chkif{birth.delivery}{c-section}C-section\quad\chkif{birth.delivery}{water}Water birth\quad
+  \chkif{birth.delivery}{home}Home birth\quad\chkif{birth.delivery}{other}Other\par\vspace{3mm}
+  \fields{Labour began}{birth.labourStart}{Length of labour}{birth.labourLength}
+  \fields{Weeks of pregnancy}{birth.weeks}{APGAR score}{birth.apgar}
+  \field{Pain relief / complications}{birth.painRelief}\end{card}
+\notecard{How it all began}{5}{birth.story}
+\notecard{Mom remembers}{5}{birth.momRemembers}
+\notecard{Dad remembers}{5}{birth.dadRemembers}
+
+\pagetitle[\faGlobeAsia]{The World the Day You Were Born}
+\begin{tcbraster}[tiles,raster columns=3]
+\icontile{\faNewspaper}{Top news}{\writelines{2}{world.news}}
+\icontile{\faLandmark}{Leader of the country}{\writelines{2}{world.leader}}
+\icontile{\faMusic}{No.\ 1 song}{\writelines{2}{world.song}}
+\icontile{\faFilm}{Top film}{\writelines{2}{world.film}}
+\icontile{\faCloudSun}{Weather}{\writelines{2}{world.weather}}
+\icontile{\faMobile*}{Latest gadget}{\writelines{2}{world.gadget}}
+\icontile{\faTint}{Price of milk}{\writelines{2}{world.milk}}
+\icontile{\faGasPump}{Price of fuel}{\writelines{2}{world.fuel}}
+\icontile{\faCoins}{Price of gold}{\writelines{2}{world.gold}}
+\end{tcbraster}\vspace{3mm}
+\notecard{What was trending}{4}{world.trending}
+
+\pagetitle[\faHome]{Welcome Home}
+\photobox{home.photo}{\linewidth}{8cm}{arriving home}\par\vspace{7mm}
+\fields{Date we came home}{home.date}{Address}{home.address}\fields{Travelled by}{home.travel}{Weather}{home.weather}
+\notecard{Your first visitors}{5}{home.visitors}
+\notecard{Your first night at home}{4}{home.firstNight}
+
+\pagetitle[\faHandPaper]{Tiny Hands \& Feet}
+\begin{tcbraster}[tiles,raster columns=2,height=10.3cm]
+% keepsakes.prints.<id>.{date,photo}: a scanned print replaces the guide drawing
+\foreach \s/\p/\k in {Right hand/hand/rightHand, Left hand/hand/leftHand, Right foot/foot/rightFoot, Left foot/foot/leftFoot}{
+  \tile{{\headfont\color{theme}\s}\hfill\small date \bbor{keepsakes.prints.\k.date}{\rule{2.6cm}{.4pt}}\par\vspace{1.2cm}\centering
+  \photoor{keepsakes.prints.\k.photo}{\linewidth}{7.5cm}{%
+  \ifx\p\handname{\color{theme!18}\fontsize{130}{130}\selectfont\faHandPaper[regular]}\else
+  \begin{tikzpicture}\pic{foot=theme!45};\end{tikzpicture}\fi}}}
+\end{tcbraster}
+
+\pagetitle[\faRibbon]{Keepsakes}
+\begin{card}{Hospital ID bracelet}\centering\vspace{2mm}
+  \photoor{keepsakes.braceletPhoto}{15.5cm}{2.3cm}{\begin{tikzpicture}\draw[theme,dashed,line width=1pt,rounded corners=12pt,fill=themelight!30] (0,0) rectangle (15.5,2.3);
+  \node[text=theme!60] at (7.75,1.15) {\faTag\enspace tape your bracelet here};\end{tikzpicture}}\end{card}
+\begin{tcbraster}[raster columns=2,raster equal height,raster column skip=4mm]
+\begin{card}{First lock of hair}\centering
+  \begin{tikzpicture}[theme]
+  \draw[line width=1.2pt,fill=themelight!30,rounded corners=2pt] (0,0) rectangle (6.5,4.5);
+  \draw[line width=1.2pt] (0,4.5) -- (3.25,2) -- (6.5,4.5);
+  \node[text=theme,scale=1.8] at (3.25,2) {\faHeart};
+  \node[font=\small] at (3.25,.6) {tape a little envelope here};\end{tikzpicture}\par\vspace{2mm}
+  \raggedright\field{Date of first haircut}{keepsakes.haircutDate}\par\vspace{2mm}\field{Cut by}{keepsakes.cutBy}\end{card}
+\begin{card}{Hospital memories}\centering\photobox{keepsakes.hospitalPhoto}{\linewidth}{4.5cm}{name card / first outfit}\par
+  \vspace{7mm}\raggedright\field{Room / ward}{keepsakes.room}\par\vspace{2mm}\field{Nurses we loved}{keepsakes.nurses}\end{card}
+\end{tcbraster}
+\notecard{Cards, notes \& little treasures}{5}{keepsakes.treasures}

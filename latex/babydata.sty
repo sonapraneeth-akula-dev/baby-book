@@ -1,0 +1,60 @@
+% babydata.sty -- optional JSON data layer for babybook.cls.
+% No data file loaded => every accessor returns empty => blank template.
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{babydata}[2026/01/01 JSON data for the baby record book]
+\RequirePackage{jsonparse,pgffor}
+\JSONParseSet{escape=all}          % & # % $ _ in JSON text typeset safely
+\DeclareUnicodeCharacter{20B9}{Rs.}% the rupee sign has no glyph in these fonts
+
+\newif\ifbbdata
+% \loadbookdata{file}: load if the file exists, otherwise stay in template mode
+\newcommand\loadbookdata[1]{\bbdatafalse\edef\bb@file{#1}%
+  \ifx\bb@file\empty\typeout{babydata: no data file -- blank template}\else
+  \IfFileExists{\bb@file}{\JSONParseFromFile{\bbJSON}{\bb@file}\bbdatatrue\typeout{babydata: using \bb@file}}
+    {\typeout{babydata: \bb@file\space not found -- blank template}}\fi}
+
+% \bbget\macro{key}: \macro := value of key ('' when missing, null or no data)
+\newcommand\bbget[2]{\let#1\empty
+  \ifbbdata\edef\bb@key{#2}\ifx\bb@key\empty\else
+    \JSONParseValue[store in=#1]{\bbJSON}{\bb@key}%
+    \bb@ifeq#1{null}{\let#1\empty}{}\fi\fi}
+% raw variant (no escaping) for file names
+\newcommand\bbgetraw[2]{\begingroup\JSONParseSet{escape=none}\bbget\bb@raw{#2}%
+  \global\let\bb@rawg\bb@raw\endgroup\let#1\bb@rawg}
+\newcommand\bb@ifeq[4]{\edef\bb@a{\detokenize\expandafter{#1}}\edef\bb@b{\detokenize{#2}}%
+  \ifx\bb@a\bb@b\expandafter\@firstoftwo\else\expandafter\@secondoftwo\fi{#3}{#4}}
+% \bbcount\macro{arrayKey}: number of array items (0 without data)
+\newcommand\bbcount[2]{\def#1{0}\ifbbdata\edef\bb@key{#2}%
+  \JSONParseArrayCount[store in=#1]{\bbJSON}{\bb@key}\ifx#1\empty\def#1{0}\fi\fi}
+
+% printing: \bbv{key} value or nothing; \bbor{key}{fallback}; \bbif{key}{yes}{no}
+\newcommand\bbv[1]{\bbget\bb@v{#1}\ifx\bb@v\empty\else\leavevmode{\valuefont\bb@v}\fi}
+\newcommand\bbor[2]{\bbget\bb@v{#1}\ifx\bb@v\empty#2\else\leavevmode{\valuefont\bb@v}\fi}
+\newcommand\bbif[3]{\bbget\bb@v{#1}\ifx\bb@v\empty\expandafter\@secondoftwo\else\expandafter\@firstoftwo\fi{#2}{#3}}
+% ticked box when key == value (booleans are the strings true/false)
+\newcommand\chkif[2]{\bbget\bb@v{#1}\bb@ifeq\bb@v{#2}{\chkyes}{\chk}}
+
+% ---------- table rows (\foreach can't run inside tabular): build \rows first ----------
+\newcommand\rowsreset{\gdef\rows{}}
+% \addrow{cells}: cells are \xdef-expanded (use \noexpand for commands)
+\newcommand\addrow[1]{\xdef\rows{\unexpanded\expandafter{\rows}#1\noexpand\\\noexpand\hline}}
+\newcommand\addblankrows[2]{\edef\bb@k{\the\numexpr#1\relax}%
+  \ifnum\bb@k>0 \foreach\bb@i in{1,...,\bb@k}{\addrow{\unexpanded{#2}}}\fi}
+\newif\ifbb@first
+% one row: {static leading cells}{key prefix}{field list} -> static & \bbv{prefix.field} ...
+\newcommand\bb@datarow[3]{\gdef\bb@row{#1}%
+  \if\relax\detokenize{#1}\relax\global\bb@firsttrue\else\global\bb@firstfalse\fi
+  \foreach\bb@f in{#3}{\xdef\bb@row{\unexpanded\expandafter{\bb@row}\ifbb@first\else&\fi
+    \noexpand\bbv{#2.\bb@f}}\global\bb@firstfalse}%
+  \addrow{\unexpanded\expandafter{\bb@row}}}
+% fixed rows: \addkeyedrows{prefix}{fields}{id/{static cells}, ...}
+\newcommand\addkeyedrows[3]{\foreach\bb@id/\bb@s in{#3}{%
+  \expandafter\bb@datarow\expandafter{\bb@s}{#1.\bb@id}{#2}}}
+% array rows, padded with blank rows up to min: \addarrayrows{arrayKey}{fields}{min}
+\newcommand\addarrayrows[3]{\bbcount\bb@n{#1}%
+  \ifnum\bb@n>0 \foreach\bb@i in{1,...,\bb@n}{\bb@datarow{}{#1[\the\numexpr\bb@i-1\relax]}{#2}}\fi
+  \gdef\bb@blank{}\global\bb@firsttrue
+  \foreach\bb@f in{#2}{\ifbb@first\else\xdef\bb@blank{\bb@blank&}\fi\global\bb@firstfalse}%
+  \edef\bb@k{\the\numexpr#3-\bb@n\relax}%
+  \ifnum\bb@k>0 \foreach\bb@i in{1,...,\bb@k}{\addrow{\bb@blank}}\fi}
+\endinput

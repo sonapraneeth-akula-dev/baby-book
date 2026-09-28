@@ -1,0 +1,64 @@
+% ================= PART 1: family =================
+\bookpart{1}{Before Birth\\\& Arrival}{Where you come from, how you grew,\\and the day we finally met you}{rose}{blush}{\faHeart\ \faBaby\ \faHeart}
+
+\pagetitle[\faSitemap]{Our Family Tree}
+\begin{center}\begin{tikzpicture}[font=\small]
+  % great-grandparents: family.greatGrandparents[0..7], dad's side first
+  \foreach \id/\x/\c/\i [count=\k from 0] in {g1/-7.6/ocean/\faMale, g2/-5.6/ocean/\faFemale, g3/-3.2/ocean/\faMale, g4/-1.2/ocean/\faFemale,
+                            g5/1.2/rose/\faMale, g6/3.2/rose/\faFemale, g7/5.6/rose/\faMale, g8/7.6/rose/\faFemale}
+    {\member[1.45cm]{\id}{\x,0}{\c}{\Large\i}{Great-\\grandparent}{family.greatGrandparents[\k]}}
+  \member{gp1}{-6.6,-4}{ocean}{\LARGE\faMale}{Grandpa}{family.paternalGrandfather}
+  \member{gp2}{-2.2,-4}{ocean}{\LARGE\faFemale}{Grandma}{family.paternalGrandmother}
+  \member{gp3}{2.2,-4}{rose}{\LARGE\faMale}{Grandpa}{family.maternalGrandfather}
+  \member{gp4}{6.6,-4}{rose}{\LARGE\faFemale}{Grandma}{family.maternalGrandmother}
+  \member[2.8cm]{dad}{-4.4,-8.4}{ocean}{\Huge\faMale}{Dad}{family.dad}
+  \member[2.8cm]{mom}{4.4,-8.4}{rose}{\Huge\faFemale}{Mom}{family.mom}
+  \member[3.4cm]{me}{0,-13.4}{coral}{\fontsize{44}{44}\selectfont\faBaby}{ME!}{baby}
+  \member[1.9cm]{s1}{-6,-13.4}{sea}{\LARGE\faChild}{Sibling}{family.siblings[0]}
+  \member[1.9cm]{s2}{6,-13.4}{plum}{\LARGE\faChild}{Sibling}{family.siblings[1]}
+  \couple{g1}{g2}{ocean!60}\couple{g3}{g4}{ocean!60}\couple{g5}{g6}{rose!60}\couple{g7}{g8}{rose!60}
+  \couple{gp1}{gp2}{ocean!60}\couple{gp3}{gp4}{rose!60}\couple{dad}{mom}{coral!70}
+  \foreach \p/\k/\c in {g1g2/gp1/ocean,g3g4/gp2/ocean,g5g6/gp3/rose,g7g8/gp4/rose}
+    \draw[\c!60,line width=1.2pt] (\p) -- (\k);
+  \draw[ocean!60,line width=1.2pt] (gp1gp2) |- ($(dad.north)+(0,.9)$) -- (dad);
+  \draw[rose!60,line width=1.2pt] (gp3gp4) |- ($(mom.north)+(0,.9)$) -- (mom);
+  \draw[coral!70,line width=1.2pt] (dadmom) -- (me);
+  \draw[coral!70,line width=1.2pt] (0,-10.9) -| (s1) (0,-10.9) -| (s2);
+\end{tikzpicture}\end{center}
+\vfill{\centering\small\itshape Write each name on the line under the circle, or glue in a tiny photo.\par}
+
+\pagetitle[\faUserFriends]{Meet Mom \& Dad}
+\begin{tcbraster}[raster columns=2,raster equal height,raster column skip=4mm]
+\foreach \who/\k/\c in {Mom/mom/rose, Dad/dad/ocean}{%
+\begin{card}[colframe=\c,colbacktitle=\c]{\who}
+  \centering\photobox{family.\k.photo}{4.2cm}{4.2cm}{}\par\raggedright\vspace{2mm}\colorlet{theme}{\c}
+  \field{Name}{family.\k.name}\par\vspace{2mm}\field{Birthday}{family.\k.birthday}\par\vspace{2mm}
+  \field{Hometown}{family.\k.hometown}\par\vspace{2mm}\field{Work}{family.\k.work}\par\vspace{2mm}
+  \field{Loves}{family.\k.loves}\par\vspace{2mm}\field{Childhood nickname}{family.\k.nickname}\par\vspace{2mm}
+  \field{I knew I'd be a \k\ when}{family.\k.knewWhen}\par\vspace{2mm}\field{}{}\end{card}}
+\end{tcbraster}\vspace{3mm}
+\fields{We met on}{family.met.date}{We met at}{family.met.place}
+\notecard{Our love story}{7}{family.met.story}
+
+\pagetitle[\faHome]{Your Grandparents}
+\begin{tcbraster}[raster columns=2,raster equal height,raster column skip=4mm,raster row skip=4mm]
+\foreach \side/\who/\c/\k in {Dad's/Grandpa/ocean/paternalGrandfather, Dad's/Grandma/ocean/paternalGrandmother,
+                              Mom's/Grandpa/rose/maternalGrandfather, Mom's/Grandma/rose/maternalGrandmother}{%
+\begin{card}[colframe=\c,colbacktitle=\c]{\side\ side \textbullet\ \who}
+  \colorlet{theme}{\c}\begin{minipage}[t]{2.9cm}\vspace{0pt}\begin{tikzpicture}
+    \portrait[2.7cm]{gp}{0,0}{\c}{\fontsize{34}{34}\selectfont\ifx\who\grandpaname\faMale\else\faFemale\fi}{family.\k.photo}
+    \end{tikzpicture}\end{minipage}\hfill
+  \begin{minipage}[t]{.55\linewidth}\vspace{2mm}\field{Name}{family.\k.name}\par\vspace{2mm}\field{Born}{family.\k.born}\par\vspace{2mm}
+  \field{From}{family.\k.from}\par\vspace{2mm}\field{You call me}{family.\k.callMe}\end{minipage}\par\vspace{3mm}
+  \field{My wish for you}{family.\k.wish}\par\vspace{2mm}\field{}{}\par\vspace{2mm}\field{}{}\end{card}}
+\end{tcbraster}
+\vspace{2mm}\notecard{Great-grandparents \& extended family}{4}{family.extended}
+
+\pagetitle[\faGlobeAsia]{Our Roots \& Traditions}
+\begin{tcbraster}[tiles,raster columns=2]
+\icontile{\faMapMarked*}{Where our families come from}{\writelines{3}{roots.origins}}
+\icontile{\faLanguage}{Languages we speak}{\writelines{3}{roots.languages}}
+\icontile{\faPrayingHands}{Family traditions \& faith}{\writelines{3}{roots.traditions}}
+\icontile{\faUtensils}{A family recipe for you}{\writelines{3}{roots.recipe}}
+\end{tcbraster}\vspace{3mm}
+\notecard{Family stories you should know}{6}{roots.stories}

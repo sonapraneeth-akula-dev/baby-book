@@ -1,0 +1,278 @@
+{
+  "_readme": "Sample data for the baby book. Copy to data/baby.json and edit. Any key can be removed or left empty to get a blank line. Photo values are file names inside photos/. Growth numbers: kg and cm.",
+
+  "baby": {
+    "name": "Anaya",
+    "fullName": "Anaya Rohan Sharma",
+    "nickname": "Anu, Chinni",
+    "bornOn": "14 January 2026",
+    "bornIn": "Hyderabad, Telangana",
+    "nameMeaning": "caring, compassionate",
+    "nameStory": "Your Nani suggested Anaya the day we told her about you. Papa kept a list of forty names on his phone, but every time we said Anaya out loud it felt like you. We whispered it to you at the 20-week scan and you kicked!",
+    "photo": ""
+  },
+
+  "family": {
+    "mom": {
+      "name": "Priya Sharma", "birthday": "3 March 1994", "hometown": "Vijayawada",
+      "work": "Architect", "loves": "filter coffee, old Telugu songs", "nickname": "Pinky",
+      "knewWhen": "I held my niece for the first time", "photo": ""
+    },
+    "dad": {
+      "name": "Rohan Sharma", "birthday": "19 August 1992", "hometown": "Jaipur",
+      "work": "Software engineer", "loves": "cricket, cooking dal baati", "nickname": "Bittu",
+      "knewWhen": "we saw your heartbeat on the screen", "photo": ""
+    },
+    "met": {
+      "date": "12 June 2019", "place": "a friend's wedding in Pune",
+      "story": "Mom was the bride's college friend, Dad was the groom's cousin. We were both hiding from the dance floor and ended up talking about books all night."
+    },
+    "paternalGrandfather": { "name": "Suresh Sharma", "born": "1962", "from": "Jaipur", "callMe": "Dadu", "wish": "May you always be curious and kind.", "photo": "" },
+    "paternalGrandmother": { "name": "Meena Sharma", "born": "1966", "from": "Ajmer", "callMe": "Dadi", "wish": "Grow up surrounded by music and laughter.", "photo": "" },
+    "maternalGrandfather": { "name": "Venkat Rao", "born": "1960", "from": "Vijayawada", "callMe": "Thatha", "wish": "Be brave and read every book you can.", "photo": "" },
+    "maternalGrandmother": { "name": "Padma Rao", "born": "1965", "from": "Guntur", "callMe": "Nani", "wish": "Never lose your beautiful smile.", "photo": "" },
+    "greatGrandparents": [
+      { "name": "Gopal", "photo": "" }, { "name": "Kamala", "photo": "" },
+      { "name": "Mohan", "photo": "" }, { "name": "Shanti", "photo": "" },
+      { "name": "Ramaiah", "photo": "" }, { "name": "Lakshmi", "photo": "" },
+      { "name": "Subba Rao", "photo": "" }, { "name": "Sita", "photo": "" }
+    ],
+    "siblings": [],
+    "extended": "Bade Papa and Badi Mummy in Jaipur, Kavya Maasi and Arjun Mausa in Bengaluru, and cousins Ishaan and Diya who cannot wait to play with you."
+  },
+
+  "roots": {
+    "origins": "Dad's family: Jaipur, Rajasthan. Mom's family: Vijayawada, Andhra Pradesh.",
+    "languages": "Hindi, Telugu and English (and a little Marwari from Dadi)",
+    "traditions": "Diwali in Jaipur, Sankranti in Vijayawada, Sunday temple visits with Thatha",
+    "recipe": "Nani's pesarattu with ginger chutney",
+    "stories": "Dadu once cycled 40 km to watch a cricket match. Thatha built the first radio in his village. Great-grandma Sita sang the lullaby we now sing to you."
+  },
+
+  "pregnancy": {
+    "foundOn": "2 May 2025", "howFound": "home test on a Friday morning, then confirmed at the clinic",
+    "dueDate": "18 January 2026", "firstTold": "Nani, on a video call",
+    "momReaction": "happy tears", "dadReaction": "stunned silence, then a big hug",
+    "howToldFamily": "a tiny pair of socks in a Diwali sweet box", "testPhoto": "",
+    "predictions": [
+      { "name": "Nani", "sex": "Girl", "date": "10 Jan", "weight": "3.0 kg", "hair": "Black" },
+      { "name": "Dadu", "sex": "Boy", "date": "20 Jan", "weight": "3.4 kg", "hair": "Brown" },
+      { "name": "Kavya Maasi", "sex": "Girl", "date": "14 Jan", "weight": "3.1 kg", "hair": "Black" }
+    ],
+    "timeline": {
+      "found":     { "week": "5",  "date": "2 May" },
+      "heartbeat": { "week": "8",  "date": "28 May" },
+      "firstScan": { "week": "12", "date": "24 Jun" },
+      "kick":      { "week": "19", "date": "5 Aug" },
+      "halfway":   { "week": "20", "date": "12 Aug" },
+      "hiccups":   { "week": "28", "date": "" },
+      "shower":    { "week": "32", "date": "9 Nov" },
+      "bag":       { "week": "36", "date": "7 Dec" },
+      "due":       { "week": "40", "date": "18 Jan" }
+    },
+    "cravings": "mango pickle, pani puri and ice-cold watermelon",
+    "symptoms": "morning sickness until week 14, sleepy afternoons, swollen feet",
+    "songs": "Chanda Mama Door Ke, Twinkle Twinkle, Jo Achyutananda",
+    "feelings": "Excited, nervous and completely in love. Feeling you move for the first time made everything real.",
+    "scans": {
+      "dating":  { "photo": "", "week": "8",  "date": "28 May 2025" },
+      "nt":      { "photo": "", "week": "12", "date": "24 Jun 2025" },
+      "anatomy": { "photo": "", "week": "20", "date": "12 Aug 2025" },
+      "growth":  { "photo": "", "week": "32", "date": "4 Nov 2025" },
+      "threeD":  { "photo": "", "week": "", "date": "" },
+      "extra":   { "photo": "", "week": "", "date": "" }
+    },
+    "belly": { "8": "", "12": "", "16": "", "20": "", "24": "", "28": "", "30": "", "32": "", "34": "", "36": "", "38": "", "40": "" },
+    "doctor": "Dr. Kavitha Reddy", "hospital": "Rainbow Hospital, Banjara Hills",
+    "momBlood": "B+", "babyBlood": "",
+    "checkups": [
+      { "date": "10 May 2025", "week": "6",  "weight": "58 kg", "bp": "110/70", "notes": "Confirmed! Folic acid started" },
+      { "date": "24 Jun 2025", "week": "12", "weight": "59 kg", "bp": "112/72", "notes": "NT scan normal, double marker test" },
+      { "date": "12 Aug 2025", "week": "20", "weight": "62 kg", "bp": "110/70", "notes": "Anomaly scan all good" },
+      { "date": "2 Oct 2025",  "week": "27", "weight": "65 kg", "bp": "114/74", "notes": "Glucose test (GTT) normal, TT dose" }
+    ]
+  },
+
+  "shower": {
+    "photo": "", "date": "9 November 2025", "place": "Nani's house, Vijayawada",
+    "host": "Nani & Kavya Maasi", "theme": "Seemantham (traditional)",
+    "guests": "Nani, Thatha, Dadi, Kavya Maasi, Deepa aunty, the neighbours and Mom's school friends",
+    "gifts": "Silver anklets from Dadi, a cradle from Thatha, handmade quilts from Deepa aunty",
+    "fun": "Guess-the-bump-size with a ribbon and far too many laddoos"
+  },
+
+  "birth": {
+    "date": "14 Jan 2026", "time": "6:42 am", "weight": "3.1 kg", "length": "49 cm",
+    "place": "Rainbow Hospital", "head": "34 cm", "eyes": "dark brown", "hair": "black, lots!",
+    "doctor": "Dr. Kavitha Reddy", "present": "Papa and Nani",
+    "firstWords": "\"She's here, and she's perfect.\"", "photo": "",
+    "delivery": "natural",
+    "labourStart": "13 Jan, 11 pm", "labourLength": "7 hours",
+    "weeks": "39 + 3", "apgar": "8 / 9", "painRelief": "epidural, no complications",
+    "story": "It was Bhogi night and the whole colony was lighting bonfires when the first contractions started. We reached the hospital by midnight.",
+    "momRemembers": "Your tiny fingers wrapped around mine and the way you stopped crying when you heard my voice.",
+    "dadRemembers": "The nurse handed you to me and I forgot how to breathe."
+  },
+
+  "world": {
+    "news": "", "leader": "", "song": "", "film": "", "weather": "cool and misty, 16 °C",
+    "gadget": "", "milk": "Rs. 58 per litre", "fuel": "Rs. 107 per litre", "gold": "",
+    "trending": ""
+  },
+
+  "home": {
+    "photo": "", "date": "16 January 2026", "address": "Gachibowli, Hyderabad",
+    "travel": "car, very very slowly", "weather": "sunny winter afternoon",
+    "visitors": "Dadu and Dadi flew in from Jaipur the same evening.",
+    "firstNight": "You slept in two-hour stretches and we took turns watching you breathe."
+  },
+
+  "keepsakes": {
+    "prints": {
+      "rightHand": { "date": "16 Jan 2026", "photo": "" },
+      "leftHand":  { "date": "16 Jan 2026", "photo": "" },
+      "rightFoot": { "date": "", "photo": "" },
+      "leftFoot":  { "date": "", "photo": "" }
+    },
+    "braceletPhoto": "",
+    "haircutDate": "", "cutBy": "",
+    "hospitalPhoto": "", "room": "Room 412, maternity wing", "nurses": "Sister Mary and Lakshmi",
+    "treasures": ""
+  },
+
+  "growth": {
+    "0":  { "date": "14 Jan 2026", "weight": "3.1", "length": "49",   "head": "34",   "notes": "Born!" },
+    "1":  { "date": "14 Feb 2026", "weight": "4.2", "length": "53.5", "head": "36.8", "notes": "" },
+    "2":  { "date": "14 Mar 2026", "weight": "5.1", "length": "57",   "head": "38.4", "notes": "" },
+    "3":  { "date": "14 Apr 2026", "weight": "5.9", "length": "60",   "head": "39.6", "notes": "" },
+    "4":  { "date": "", "weight": "", "length": "", "head": "", "notes": "" },
+    "6":  { "date": "", "weight": "", "length": "", "head": "", "notes": "" },
+    "12": { "date": "", "weight": "", "length": "", "head": "", "notes": "" }
+  },
+
+  "health": {
+    "bloodGroup": "O+", "hospitalNo": "RH-2026-00142",
+    "paediatrician": "Dr. Anil Kumar", "paediatricianPhone": "+91 98xxx xxxxx",
+    "dentist": "", "dentistPhone": "",
+    "allergies": { "food": "none known", "medicine": "", "other": "", "reaction": "", "treatment": "" },
+    "screening": "Newborn hearing test passed (OAE). TSH and G6PD screening normal. Hip check normal."
+  },
+
+  "familyHistory": {
+    "allergies": { "mom": false, "dad": true,  "notes": "Dad - dust allergy" },
+    "asthma":    { "mom": false, "dad": false, "notes": "" },
+    "diabetes":  { "mom": true,  "dad": true,  "notes": "Thatha and Dadu (type 2)" },
+    "bp":        { "mom": false, "dad": true,  "notes": "Dadu" },
+    "thyroid":   { "mom": true,  "dad": false, "notes": "Nani" },
+    "eyesight":  { "mom": true,  "dad": true,  "notes": "Both parents wear glasses" }
+  },
+
+  "vaccines": {
+    "bcg":   { "date": "14 Jan 2026", "batch": "", "notes": "Left upper arm" },
+    "opv0":  { "date": "14 Jan 2026", "batch": "", "notes": "" },
+    "hepb1": { "date": "14 Jan 2026", "batch": "", "notes": "" },
+    "dtp1":  { "date": "25 Feb 2026", "batch": "Hexaxim", "notes": "Mild fever, 1 day" },
+    "ipv1":  { "date": "25 Feb 2026", "batch": "Hexaxim", "notes": "" },
+    "hib1":  { "date": "25 Feb 2026", "batch": "Hexaxim", "notes": "" },
+    "hepb2": { "date": "25 Feb 2026", "batch": "Hexaxim", "notes": "" },
+    "rv1":   { "date": "25 Feb 2026", "batch": "Rotavac", "notes": "" },
+    "pcv1":  { "date": "25 Feb 2026", "batch": "PCV13", "notes": "" },
+    "dtp2":  { "date": "25 Mar 2026", "batch": "Hexaxim", "notes": "" },
+    "ipv2":  { "date": "25 Mar 2026", "batch": "Hexaxim", "notes": "" },
+    "hib2":  { "date": "25 Mar 2026", "batch": "Hexaxim", "notes": "" },
+    "hepb3": { "date": "25 Mar 2026", "batch": "Hexaxim", "notes": "" },
+    "rv2":   { "date": "25 Mar 2026", "batch": "Rotavac", "notes": "" },
+    "pcv2":  { "date": "25 Mar 2026", "batch": "PCV13", "notes": "" }
+  },
+  "vaccinesExtra": [],
+
+  "doctorVisits": [
+    { "date": "21 Jan 2026", "age": "1 week", "reason": "Newborn check", "weight": "3.0 kg", "height": "49 cm", "advice": "Feeding well, sunlight for jaundice" },
+    { "date": "14 Feb 2026", "age": "1 month", "reason": "Well-baby visit", "weight": "4.2 kg", "height": "53.5 cm", "advice": "Start vitamin D drops" }
+  ],
+  "illnesses": [
+    { "date": "2 Apr 2026", "illness": "Cold and blocked nose", "treatment": "Saline drops, steam", "doctor": "Dr. Anil", "better": "6 Apr 2026" }
+  ],
+
+  "teeth": {
+    "E": "", "F": "", "D": "", "G": "", "C": "", "H": "", "B": "", "I": "", "A": "", "J": "",
+    "15": "", "16": "", "14": "", "17": "", "13": "", "18": "", "12": "", "19": "", "11": "", "20": "",
+    "first": "", "coping": ""
+  },
+
+  "milestones": {
+    "headUp": "20 Feb 2026", "rollOver": "", "sitUp": "", "crawl": "", "pullToStand": "", "stand": "",
+    "cruise": "", "firstSteps": "", "walk": "", "run": "", "stairs": "", "jump": "",
+    "crawlPhoto": "", "stepsPhoto": ""
+  },
+
+  "firsts": {
+    "smile":        { "date": "18 Feb 2026", "note": "at Papa's silly faces" },
+    "laugh":        { "date": "", "note": "" },
+    "word":         { "date": "", "note": "" },
+    "solidFood":    { "date": "", "note": "annaprashan planned for 6 months" },
+    "bath":         { "date": "15 Jan 2026", "note": "Nani's turmeric bath" },
+    "haircut":      { "date": "", "note": "mundan at Tirupati?" },
+    "sleptThrough": { "date": "", "note": "" },
+    "tooth":        { "date": "", "note": "" },
+    "byeBye":       { "date": "", "note": "" },
+    "clap":         { "date": "", "note": "" },
+    "outing":       { "date": "8 Feb 2026", "note": "the temple with Dadi" },
+    "roadTrip":     { "date": "", "note": "" },
+    "flight":       { "date": "", "note": "" },
+    "swim":         { "date": "", "note": "" },
+    "friend":       { "date": "", "note": "" },
+    "book":         { "date": "", "note": "" },
+    "dance":        { "date": "", "note": "" },
+    "scribble":     { "date": "", "note": "" }
+  },
+  "firstWords": [],
+
+  "months": {
+    "1": { "photo": "", "toys": "black-and-white cards, Papa's watch",
+           "sleep": "2-3 hour naps, loves being swaddled", "eating": "breastfeeding every 2-3 hours",
+           "skills": "follows faces, lifts head for a second", "moment": "Your naming ceremony (barasala) with all the family" },
+    "2": { "photo": "", "toys": "rattle from Thatha", "sleep": "4-hour stretch at night!", "eating": "",
+           "skills": "social smiles, cooing", "moment": "First smile, all for Papa" },
+    "3": { "photo": "", "toys": "", "sleep": "", "eating": "", "skills": "", "moment": "" }
+  },
+
+  "holidays": {
+    "diwali":    { "photo": "", "date": "", "where": "", "with": "", "remember": "" },
+    "christmas": { "photo": "", "date": "", "where": "", "with": "", "remember": "" },
+    "eid":       { "photo": "", "date": "", "where": "", "with": "", "remember": "" },
+    "hanukkah":  { "photo": "", "date": "", "where": "", "with": "", "remember": "" },
+    "newYear":   { "photo": "", "date": "", "where": "", "with": "", "remember": "" },
+    "halloween": { "photo": "", "date": "", "where": "", "with": "", "remember": "" },
+    "custom1":   { "name": "First Sankranti", "photo": "", "date": "14 Jan 2026", "where": "Hospital!", "with": "Papa and Nani", "remember": "You were born on Sankranti morning" },
+    "custom2":   { "name": "First Holi", "photo": "", "date": "4 Mar 2026", "where": "Home", "with": "Dadi, Dadu", "remember": "A tiny dot of gulal on your cheek" }
+  },
+
+  "birthday1": {
+    "date": "", "place": "", "theme": "", "cake": "", "outfit": "", "gift": "",
+    "size": "", "teeth": "", "words": "", "guests": "", "candlePhoto": "", "cakeSmashPhoto": ""
+  },
+  "wishes": { "mom": "", "dad": "", "photo": "" },
+
+  "letters": {
+    "mom": { "from": "Mom", "date": "14 February 2026",
+             "text": "My darling Anaya, one month ago you made me a mother. I love the little sighs you make when you sleep and the way you grab my dupatta. Whatever you become, I will be right here cheering for you. All my love, forever." },
+    "dad": { "from": "", "date": "", "text": "" },
+    "grandparents1": { "from": "", "date": "", "text": "" },
+    "grandparents2": { "from": "", "date": "", "text": "" },
+    "special1": { "from": "", "date": "", "text": "" },
+    "special2": { "from": "", "date": "", "text": "" }
+  },
+
+  "years": {
+    "1": {
+      "photo": "", "shoe": "", "clothes": "", "teeth": "", "theme": "", "home": "", "friends": "",
+      "school": { "name": "", "started": "", "teacher": "", "group": "", "love": "" },
+      "hobbies": "", "learned": "",
+      "favourites": { "food": "", "colour": "", "toy": "", "book": "", "song": "", "show": "", "animal": "", "game": "", "place": "" },
+      "quotes": [], "note": ""
+    }
+  },
+
+  "timeCapsule": { "hopes": "", "world": "", "photo": "", "sealedOn": "", "openOn": "14 January 2044" }
+}

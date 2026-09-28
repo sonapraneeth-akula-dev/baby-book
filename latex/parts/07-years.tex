@@ -1,0 +1,55 @@
+% ================= YEARS 1-5 =================
+% years.<n>.{photo,shoe,clothes,teeth,theme,home,friends,school.{name,started,teacher,group,love},
+%            hobbies,learned,favourites.{food,colour,toy,book,song,show,animal,game,place},quotes[0..2],note}
+% height & weight come from growth.<12n>
+\newcommand\yearpages[1]{%
+  \bookpart{\faStar}{Year #1}{\ifcase#1\or From one candle to one year of adventures\or The terrific twos\or
+    Three and full of questions\or Four and fearless\or High five -- you are five!\fi}{\ifcase#1\or rose\or coral\or sea\or ocean\or plum\fi}
+    {\ifcase#1\or blush\or peach\or mint\or sky\or lav\fi}{\foreach\i in{1,...,#1}{\faBirthdayCake\ }}
+  \pagetitle[\faBirthdayCake]{All About Me at #1}
+  \begin{minipage}[t]{.5\linewidth}\vspace{0pt}\photobox{years.#1.photo}{\linewidth}{8.5cm}{my birthday photo}\end{minipage}\hfill
+  \begin{minipage}[t]{.46\linewidth}\vspace{0pt}
+    {\color{theme}\faRulerVertical}\ \field[.88\linewidth]{Height (cm)}{growth.\the\numexpr12*#1\relax.length}\par\vspace{2.4mm}
+    {\color{theme}\faWeightHanging}\ \field[.88\linewidth]{Weight (kg)}{growth.\the\numexpr12*#1\relax.weight}\par\vspace{2.4mm}
+    {\color{theme}\faShoePrints}\ \field[.88\linewidth]{Shoe size}{years.#1.shoe}\par\vspace{2.4mm}
+    {\color{theme}\faTshirt}\ \field[.88\linewidth]{Clothes size}{years.#1.clothes}\par\vspace{2.4mm}
+    {\color{theme}\faTooth}\ \field[.88\linewidth]{Teeth}{years.#1.teeth}\par\vspace{2.4mm}
+    {\color{theme}\faBirthdayCake}\ \field[.88\linewidth]{Party theme}{years.#1.theme}\par\vspace{2.4mm}
+    {\color{theme}\faHome}\ \field[.88\linewidth]{We live in}{years.#1.home}\par\vspace{2.4mm}
+    {\color{theme}\faUserFriends}\ \field[.88\linewidth]{Best friends}{years.#1.friends}\end{minipage}\par\vspace{9mm}
+  \begin{card}{\ifnum#1<3 Daycare \& playgroup\else Preschool \& school\fi}
+    \fields{Name}{years.#1.school.name}{Started on}{years.#1.school.started}
+    \fields{Teacher(s)}{years.#1.school.teacher}{Class / group}{years.#1.school.group}
+    \field{What you love there}{years.#1.school.love}\end{card}
+  \begin{tcbraster}[raster columns=2,raster equal height,raster column skip=4mm]
+    \notecard{Hobbies \& activities}{6}{years.#1.hobbies}\notecard{This year you learned to\ldots}{6}{years.#1.learned}\end{tcbraster}
+  \clearpage\pagetitle[\faHeart]{My Favourite Things at #1}
+  \begin{tcbraster}[tiles,raster columns=3]
+  \icontile{\faPizzaSlice}{Food}{\writelines{1}{years.#1.favourites.food}}
+  \icontile{\faPalette}{Colour}{\writelines{1}{years.#1.favourites.colour}}
+  \icontile{\faPuzzlePiece}{Toy}{\writelines{1}{years.#1.favourites.toy}}
+  \icontile{\faBook}{Book}{\writelines{1}{years.#1.favourites.book}}
+  \icontile{\faMusic}{Song}{\writelines{1}{years.#1.favourites.song}}
+  \icontile{\faTv}{Show}{\writelines{1}{years.#1.favourites.show}}
+  \icontile{\faPaw}{Animal}{\writelines{1}{years.#1.favourites.animal}}
+  \icontile{\faFutbol}{Game}{\writelines{1}{years.#1.favourites.game}}
+  \icontile{\faMapMarker*}{Place}{\writelines{1}{years.#1.favourites.place}}
+  \end{tcbraster}\vspace{3mm}
+  {\headfont\Large\color{theme}\faQuoteLeft\ Things you said\ldots}\par\vspace{2mm}
+  \begin{center}\begin{tikzpicture}
+    \foreach \x/\y/\p [count=\q from 0] in {-4.3/0/{(.35,-.9)}, 4.3/0/{(-.35,-.9)}, 0/-3.1/{(.4,-.9)}}
+      \node[rectangle callout,rounded corners=10pt,fill=themelight!60,draw=theme,line width=1pt,
+        minimum width=8cm,minimum height=2.5cm,callout relative pointer=\p,text width=7.4cm,align=center]
+        at (\x,\y) {\bbv{years.#1.quotes[\q]}};
+  \end{tikzpicture}\end{center}\vspace{2mm}
+  \notecard{A note from Mom \& Dad}{3}{years.#1.note}}
+\foreach \y in {1,...,5}{\yearpages{\y}}
+
+% timeCapsule.{hopes,world,photo,sealedOn,openOn}
+\clearpage\settheme{rose}{blush}
+\pagetitle[\faHourglassHalf]{Time Capsule}
+\begin{center}\small\itshape Seal this page (or an envelope) and open it together on your 18th birthday.\end{center}
+\notecard{What we hope for you}{8}{timeCapsule.hopes}
+\notecard{What the world is like right now}{6}{timeCapsule.world}
+\photobox{timeCapsule.photo}{\linewidth}{6.3cm}{our family today}\par\vspace{7mm}
+\fields{Sealed on}{timeCapsule.sealedOn}{To be opened on}{timeCapsule.openOn}

@@ -1,0 +1,57 @@
+% ================= PART 4: memories & holidays =================
+\bookpart{4}{Memories,\\Holidays \& Beyond}{Celebrations, letters from loved ones,\\and the years from one to five}{plum}{lav}{\faGifts\ \faBirthdayCake\ \faEnvelopeOpenText}
+
+% holidays.<id>.{photo,date,where,with,remember}; custom1/custom2 also take a name
+\newcommand\holidaycard[3]{\tile{{\color{theme}\LARGE #1}\hspace{2mm}{\headfont\large #2}\par\vspace{2mm}
+  \centering\photobox{holidays.#3.photo}{\linewidth}{6cm}{}\par\raggedright\vspace{2mm}
+  \field{Date}{holidays.#3.date}\par\vspace{1.5mm}\field{Where}{holidays.#3.where}\par\vspace{1.5mm}
+  \field{With}{holidays.#3.with}\par\vspace{1.5mm}\field{We remember}{holidays.#3.remember}}}
+\pagetitle[\faGifts]{My First Holidays}
+\begin{tcbraster}[tiles,raster columns=2]
+\holidaycard{\faIcon{om}}{First Diwali}{diwali}\holidaycard{\faHollyBerry}{First Christmas}{christmas}
+\holidaycard{\faStarAndCrescent}{First Eid}{eid}\holidaycard{\faMenorah}{First Hanukkah}{hanukkah}
+\end{tcbraster}
+\pagetitle[\faGlassCheers]{More Celebrations}
+\begin{tcbraster}[tiles,raster columns=2]
+\holidaycard{\faGlassCheers}{First New Year}{newYear}\holidaycard{\faGhost}{First Halloween}{halloween}
+\holidaycard{\faHeart}{\bbor{holidays.custom1.name}{Family festival: \rule{3cm}{.4pt}}}{custom1}
+\holidaycard{\faHeart}{\bbor{holidays.custom2.name}{Family festival: \rule{3cm}{.4pt}}}{custom2}
+\end{tcbraster}
+
+\pagetitle[\faBirthdayCake]{My First Birthday}
+\begin{minipage}[t]{.42\linewidth}\vspace{0pt}\centering\begin{tikzpicture}
+  \fill[themelight] (0,-.2) ellipse (3.3 and .5);
+  \fill[rose!60,rounded corners=4pt] (-2.6,0) rectangle (2.6,1.6);
+  \fill[butter,rounded corners=4pt] (-1.9,1.6) rectangle (1.9,2.9);
+  \draw[white,line width=2pt,decorate,decoration={snake,amplitude=1.5pt,segment length=8pt}] (-2.5,1.35) -- (2.5,1.35);
+  \draw[rose,line width=2pt,decorate,decoration={snake,amplitude=1.5pt,segment length=8pt}] (-1.8,2.65) -- (1.8,2.65);
+  \fill[ocean] (-.12,2.9) rectangle (.12,3.9);
+  \fill[honey] (0,4.25) ellipse (.15 and .3);
+  \node[font=\headfont\fontsize{30}{30}\selectfont,text=white] at (0,.8) {1};
+  \foreach \x/\y/\c in {-3/4/rose,3.1/3.6/sea,-2.4/5/ocean,2.4/5.2/honey}{
+    \fill[\c!70] (\x,\y) ellipse (.4 and .5); \draw[\c] (\x,\y-.5) to[bend left] ++(.1,-.9);}
+\end{tikzpicture}\end{minipage}\hfill
+\begin{minipage}[t]{.55\linewidth}\vspace{0pt}
+  \field{Date}{birthday1.date}\par\vspace{2.5mm}\field{Place}{birthday1.place}\par\vspace{2.5mm}
+  \field{Theme}{birthday1.theme}\par\vspace{2.5mm}\field{Cake flavour}{birthday1.cake}\par\vspace{2.5mm}
+  \field{Outfit}{birthday1.outfit}\par\vspace{2.5mm}\field{Best gift}{birthday1.gift}\par\vspace{2.5mm}
+  \field{Weight \& height}{birthday1.size}\par\vspace{2.5mm}
+  \field{Number of teeth}{birthday1.teeth}\par\vspace{2.5mm}\field{Words you could say}{birthday1.words}\end{minipage}\par\vspace{5mm}
+\photobox{birthday1.candlePhoto}{.48\linewidth}{6cm}{blowing the candle}\hfill\photobox{birthday1.cakeSmashPhoto}{.48\linewidth}{6cm}{cake smash!}\par\vspace{8mm}
+\notecard{Guest list}{4}{birthday1.guests}
+
+\pagetitle[\faEnvelopeOpenText]{Birthday Wishes}
+\notecard[colframe=rose,colbacktitle=rose]{From Mom}{8}{wishes.mom}
+\notecard[colframe=ocean,colbacktitle=ocean]{From Dad}{8}{wishes.dad}
+\photobox{wishes.photo}{\linewidth}{4.5cm}{our family on your first birthday}
+
+% letters.<slot>.{from,date,text}
+\newcommand\letterpage[2]{\clearpage\pagetitle[\faEnvelope]{A Letter From #1}
+  \begin{center}\begin{tikzpicture}
+    \draw[theme,line width=1.2pt,fill=themelight!40,rounded corners=2pt] (0,0) rectangle (5,3.2);
+    \draw[theme,line width=1.2pt] (0,3.2) -- (2.5,1.4) -- (5,3.2);
+    \node[text=rose,scale=1.8] at (2.5,1.4) {\faHeart};\end{tikzpicture}\end{center}
+  \field[.5\linewidth]{Date}{letters.#2.date}\par\vspace{4mm}{\headfont\Large\color{theme} Dear little one,}\par
+  \writelines{19}{letters.#2.text}\vspace{2mm}\hfill{\headfont\color{theme}With love,}\ \bbor{letters.#2.from}{\rule{5cm}{.4pt}}}
+\foreach \w/\k in {Mom/mom, Dad/dad, Grandma \& Grandpa/grandparents1, Grandma \& Grandpa/grandparents2,
+                   Someone Special/special1, Someone Special/special2}{\letterpage{\w}{\k}}

@@ -1,0 +1,19 @@
+% Baby Record Book -- from first scan to five years.
+% Build:     latexmk -pdf main.tex        (real book if data/baby.json exists, else blank template)
+%            latexmk -pdf template.tex    (always the blank template)
+%            latexmk -pdf sample.tex      (preview filled with data/baby.sample.json)
+% Data:      data/baby.json  (start from data/baby.sample.json); photos go in photos/
+\documentclass{babybook}
+\providecommand\bookdatafile{data/baby.json}
+\loadbookdata{\bookdatafile}
+
+\begin{document}
+\input{parts/00-front}          % cover, contents, this book belongs to
+\input{parts/01-family}         % part 1: family tree, parents, grandparents, roots
+\input{parts/02-pregnancy}      %         expecting, timeline, scans, belly, check-ups, shower
+\input{parts/03-birth}          %         birth, world that day, home, prints, keepsakes
+\input{parts/04-growth-health}  % part 2: growth charts & log, health, vaccines (India), teeth
+\input{parts/05-milestones}     % part 3: milestones, firsts, first words, months 1-12
+\input{parts/06-memories}       % part 4: holidays, first birthday, letters
+\input{parts/07-years}          % years 1-5, time capsule
+\end{document}

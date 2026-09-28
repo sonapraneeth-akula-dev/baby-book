@@ -1,0 +1,136 @@
+% ================= PART 2: growth & health =================
+\bookpart{2}{Growth \& Health}{Every centimetre, every check-up,\\every tiny tooth}{sea}{mint}{\faRulerVertical\ \faStethoscope\ \faTooth}
+
+% growth.<age in months>.{date,weight,length,head,notes} feeds the log, charts, month and year pages
+\def\growthages{0,1,2,3,4,5,6,7,8,9,10,11,12,15,18,24,30,36,42,48,54,60}
+
+\pagetitle[\faChild]{Watch Me Grow}
+\begin{center}\begin{tikzpicture}
+  \draw[theme!50,line width=2pt] (-.3,0) -- (16.6,0);
+  \foreach \x/\s/\a/\i/\m in {0.9/1/Birth/\faBaby/0, 3.6/1.5/1 year/\faBaby/12, 6.3/1.9/2 years/\faChild/24,
+                         9.1/2.4/3 years/\faChild/36, 12.0/2.85/4 years/\faChild/48, 15.1/3.3/5 years/\faChild/60}{
+    \node[text=theme,anchor=south,scale=\s] at (\x,0) {\Huge\i};
+    \node[font=\headfont\small,text=theme] at (\x,-.45) {\a};
+    \node[font=\scriptsize,align=center] at (\x,-1.3) {\bbor{growth.\m.length}{\rule{1.2cm}{.3pt}} cm\\[2mm]\bbor{growth.\m.weight}{\rule{1.2cm}{.3pt}} kg};}
+\end{tikzpicture}\end{center}\vspace{2mm}
+\pgfplotsset{growth/.style={width=\linewidth,height=4.8cm,xmin=0,xmax=60,xtick={0,6,...,60},
+  minor x tick num=1,minor y tick num=1,grid=both,major grid style={theme!35},minor grid style={theme!15},
+  axis line style={theme},tick style={theme},label style={font=\small\bfseries,text=theme},
+  xlabel={Age (months)},tick label style={font=\scriptsize},clip=false}}
+% \growthchart{field}{ymin}{ymax}{yticks}{ylabel}{title}
+\newcommand\growthchart[6]{\gdef\gcoords{}%
+  \foreach\m in\growthages{\bbget\gv{growth.\m.#1}\ifx\gv\empty\else\xdef\gcoords{\gcoords(\m,\gv)}\fi}%
+  \begin{tikzpicture}\begin{axis}[growth,ymin=#2,ymax=#3,ytick={#4},ylabel={#5},title={\headfont #6},title style={text=theme}]
+  \ifx\gcoords\empty\addplot[draw=none] coordinates {(0,#2)};\else
+  \edef\gplot{\noexpand\addplot[coral,very thick,mark=*,mark options={fill=white}] coordinates {\gcoords};}\gplot\fi
+  \end{axis}\end{tikzpicture}}
+\growthchart{weight}{2}{24}{2,4,...,24}{Weight (kg)}{Weight}\par\vspace{2mm}
+\growthchart{length}{45}{120}{45,55,...,115}{Length / height (cm)}{Length \& height}\par\vspace{2mm}
+\growthchart{head}{30}{54}{30,34,...,54}{Head (cm)}{Head circumference}
+
+\pagetitle[\faRulerVertical]{Growth Log}
+\rowsreset\addkeyedrows{growth}{date,weight,length,head,notes}{0/Birth,1/1 month,2/2 months,3/3 months,4/4 months,
+  5/5 months,6/6 months,7/7 months,8/8 months,9/9 months,10/10 months,11/11 months,12/12 months,15/15 months,
+  18/18 months,24/2 years,30/2\textonehalf\ years,36/3 years,42/3\textonehalf\ years,48/4 years,54/4\textonehalf\ years,60/5 years}
+\datatable{1.72}{|>{\leavevmode\bfseries\color{theme}}P{1.9cm}|P{2.6cm}|P{1.8cm}|P{1.9cm}|P{1.7cm}|Y|}
+  {\thd{Age}&\thd{Date}&\thd{Weight \scriptsize(kg)}&\thd{Length \scriptsize(cm)}&\thd{Head \scriptsize(cm)}&\thd{Notes}}
+
+\pagetitle[\faNotesMedical]{Health Record}
+\begin{tcbraster}[raster columns=2,raster equal height,raster column skip=4mm]
+\begin{card}{Vital info}\field{Blood group}{health.bloodGroup}\par\vspace{2mm}\field{Birth hospital no.}{health.hospitalNo}\par\vspace{2mm}
+  \field{Paediatrician}{health.paediatrician}\par\vspace{2mm}\field{Phone}{health.paediatricianPhone}\par\vspace{2mm}
+  \field{Dentist}{health.dentist}\par\vspace{2mm}\field{Phone}{health.dentistPhone}\end{card}
+\begin{card}[colframe=rose,colbacktitle=rose]{\faExclamationTriangle\ Allergies}\colorlet{theme}{rose}
+  \field{Food}{health.allergies.food}\par\vspace{2mm}\field{Medicine}{health.allergies.medicine}\par\vspace{2mm}
+  \field{Other}{health.allergies.other}\par\vspace{2mm}\field{Reaction}{health.allergies.reaction}\par\vspace{2mm}
+  \field{Treatment}{health.allergies.treatment}\par\vspace{2mm}\field{}{}\end{card}
+\end{tcbraster}\vspace{2mm}
+\begin{card}{Family medical history}
+  {\renewcommand\arraystretch{1.3}\arrayrulecolor{theme!30}%
+  % familyHistory.<id>.{mom,dad (true/false),notes}
+  \rowsreset\foreach\id/\lbl in {allergies/Allergies, asthma/Asthma, eczema/Eczema, diabetes/Diabetes, heart/Heart disease,
+      bp/High blood pressure, thyroid/Thyroid, eyesight/Eyesight, hearing/Hearing, other/Other}
+    {\addrow{\lbl&\noexpand\chkif{familyHistory.\id.mom}{true}&\noexpand\chkif{familyHistory.\id.dad}{true}&%
+      \noexpand\bbor{familyHistory.\id.notes}{\noexpand\leavevmode\noexpand\color{theme!35}\noexpand\hrulefill}}}%
+  \begin{tabularx}{\linewidth}{X c c X}
+  & \bfseries Mom's side & \bfseries Dad's side & \bfseries Who / notes\\\hline
+  \rows
+  \end{tabularx}}\end{card}
+\notecard{Newborn screening \& tests}{3}{health.screening}
+
+% ---- India: IAP (ACVIP 2023) schedule; vaccines.<id>.{date,batch,notes} ----
+\newcommand\vaccinenote{\begin{center}\small\itshape Based on the Indian Academy of Paediatrics (IAP) schedule
+  \textbullet\ follow your paediatrician \textbullet\ keep the official card too\end{center}\vspace{-2mm}}
+\newcommand\vaccinetable[1]{\datatable{#1}{|>{\leavevmode\bfseries\color{theme}}P{1.9cm}|Y|P{2.6cm}|P{2.6cm}|P{3cm}|}
+  {\thd{Age}&\thd{Vaccine}&\thd{Date given}&\thd{Brand / batch}&\thd{Reaction / notes}}}
+
+\pagetitle[\faSyringe]{Immunisations: Birth to 14 Weeks}
+\vaccinenote
+\rowsreset\addkeyedrows{vaccines}{date,batch,notes}{
+  bcg/{Birth&BCG}, opv0/{&OPV-0 (oral polio)}, hepb1/{&Hepatitis B-1},
+  dtp1/{6 weeks&DTwP / DTaP-1}, ipv1/{&IPV-1}, hib1/{&Hib-1}, hepb2/{&Hepatitis B-2}, rv1/{&Rotavirus-1}, pcv1/{&PCV-1 (pneumococcal)},
+  dtp2/{10 weeks&DTwP / DTaP-2}, ipv2/{&IPV-2}, hib2/{&Hib-2}, hepb3/{&Hepatitis B-3}, rv2/{&Rotavirus-2}, pcv2/{&PCV-2},
+  dtp3/{14 weeks&DTwP / DTaP-3}, ipv3/{&IPV-3}, hib3/{&Hib-3}, hepb4/{&Hepatitis B-4}, rv3/{&Rotavirus-3 (RV5 / 116E only)}, pcv3/{&PCV-3}}
+\vaccinetable{1.75}
+\par\vspace{2mm}{\footnotesize\itshape DTwP/DTaP, IPV, Hib and Hep B are often given together as one hexavalent or
+pentavalent shot -- note the same date on each row. Government (UIP) centres use Pentavalent, fIPV, OPV, Rotavirus and PCV.\par}
+
+\pagetitle[\faSyringe]{Immunisations: 6 Months to 6 Years}
+\vaccinenote
+\rowsreset\addkeyedrows{vaccines}{date,batch,notes}{
+  flu1/{6 months&Influenza-1}, flu2/{7 months&Influenza-2}, tcv/{6--9 months&Typhoid conjugate (TCV)},
+  mmr1/{9 months&MMR-1}, hepa1/{12 months&Hepatitis A-1}, pcvb/{12--15 m&PCV booster},
+  mmr2/{15 months&MMR-2}, var1/{&Varicella-1 (chickenpox)},
+  dtpb1/{16--18 m&DTwP / DTaP booster-1}, ipvb1/{&IPV booster-1}, hibb1/{&Hib booster-1},
+  hepa2/{18--19 m&Hepatitis A-2 (inactivated vaccine)}, var2/{3--6 m after\newline dose 1&Varicella-2},
+  flu24/{2 years&Influenza (yearly)}, flu36/{3 years&Influenza (yearly)}, flu48/{4 years&Influenza (yearly)}, flu60/{5 years&Influenza (yearly)},
+  dtpb2/{4--6 years&DTwP / DTaP booster-2}, ipvb2/{&IPV booster-2}, mmr3/{&MMR-3},
+  je1/{9--12 m&Japanese encephalitis-1 (endemic areas)}, je2/{16--24 m&Japanese encephalitis-2}}
+% anything else (meningococcal, cholera, catch-up doses...): vaccinesExtra[] with age,vaccine,date,batch,notes
+\addarrayrows{vaccinesExtra}{age,vaccine,date,batch,notes}{3}
+\vaccinetable{1.5}
+\par\vspace{2mm}{\footnotesize\itshape UIP centres give MR (not MMR) at 9--12 and 16--24 months, DPT and OPV boosters at 16--24 months,
+DPT at 5--6 years, JE in endemic districts and Vitamin A every 6 months from 9 months to 5 years.\par}
+
+\pagetitle[\faUserMd]{Doctor Visits}
+\rowsreset\addarrayrows{doctorVisits}{date,age,reason,weight,height,advice}{23}
+\datatable{1.75}{|P{2.6cm}|P{1.6cm}|P{3.2cm}|P{1.6cm}|P{1.6cm}|Y|}
+  {\thd{Date}&\thd{Age}&\thd{Reason}&\thd{Weight}&\thd{Height}&\thd{Doctor's advice}}
+
+\pagetitle[\faThermometerHalf]{Illnesses \& Medicines}
+\rowsreset\addarrayrows{illnesses}{date,illness,treatment,doctor,better}{23}
+\datatable{1.75}{|P{2.6cm}|P{3.4cm}|Y|P{2.2cm}|P{2.6cm}|}
+  {\thd{Date}&\thd{Illness / symptoms}&\thd{Treatment / medicine}&\thd{Doctor}&\thd{Better on}}
+
+% teeth.<A..J upper, 11..20 lower> = date it appeared; teeth.first, teeth.coping
+\pagetitle[\faTooth]{My Teething Chart}
+\begin{center}\begin{tikzpicture}
+  \node[font=\headfont,text=theme] at (0,1.6) {Upper};
+  \node[font=\headfont,text=theme] at (0,-2.8) {Lower};
+  % colour & size by tooth type: I central, L lateral, C canine, M1, M2; filled darker once it has a date
+  \foreach \a/\t/\n [count=\k] in {16.3/M2/A, 37.7/M1/B, 55/C/C, 68.7/L/D, 82.6/I/E, 97.4/I/F, 111.3/L/G, 125/C/H, 142.3/M1/I, 163.7/M2/J}{
+    \ifnum\pdfstrcmp{\t}{I}=0 \def\tc{rose}\def\s{.62}\fi \ifnum\pdfstrcmp{\t}{L}=0 \def\tc{coral}\def\s{.55}\fi
+    \ifnum\pdfstrcmp{\t}{C}=0 \def\tc{honey}\def\s{.6}\fi \ifnum\pdfstrcmp{\t}{M1}=0 \def\tc{sea}\def\s{.85}\fi
+    \ifnum\pdfstrcmp{\t}{M2}=0 \def\tc{ocean}\def\s{.95}\fi
+    \foreach \th/\lab in {180-\a/\n, 180+\a/\the\numexpr\k+10\relax}{
+      \bbget\toothdate{teeth.\lab}\ifx\toothdate\empty\def\tf{25}\else\def\tf{85}\fi
+      \coordinate (p) at ($(0,{\th>180 ? -1.2 : 0})+(\th:3.6cm and 3.2cm)$);
+      \filldraw[draw=\tc,fill=\tc!\tf,line width=1pt,rotate around={\th-90:(p)}] (p) ellipse ({\s*.67} and {\s*.8});
+      \node[font=\scriptsize\bfseries] at (p) {\lab};}}
+  \node[text=rose!60,scale=2.5] at (0,-.6) {\faSmile[regular]};
+\end{tikzpicture}\end{center}
+\vspace{-1mm}{\centering\small
+  \foreach \c/\t in {rose/Central incisor, coral/Lateral incisor, honey/Canine, sea/First molar, ocean/Second molar}
+  {\tikz\fill[\c!60] circle (4pt);~\t\quad}\par}\vspace{3mm}
+\newcommand\tooth[1]{#1\ {\footnotesize\bbv{teeth.#1}}}
+{\renewcommand\arraystretch{1.7}\arrayrulecolor{theme!50}\rowcolors{2}{themelight!40}{white}
+\begin{tabularx}{\linewidth}{|>{\bfseries}P{3cm}|P{2.1cm}|Y|Y|P{2.1cm}|Y|Y|}\hline
+\rowcolor{theme}\multicolumn{1}{|c|}{\thd{Tooth}}&\multicolumn{3}{c|}{\thd{Upper (A--J): typical age \& dates}}&\multicolumn{3}{c|}{\thd{Lower (11--20): typical age \& dates}}\\\hline
+Central incisor&8--12 m&\tooth{E}&\tooth{F}&6--10 m&\tooth{15}&\tooth{16}\\\hline
+Lateral incisor&9--13 m&\tooth{D}&\tooth{G}&10--16 m&\tooth{14}&\tooth{17}\\\hline
+Canine&16--22 m&\tooth{C}&\tooth{H}&17--23 m&\tooth{13}&\tooth{18}\\\hline
+First molar&13--19 m&\tooth{B}&\tooth{I}&14--18 m&\tooth{12}&\tooth{19}\\\hline
+Second molar&25--33 m&\tooth{A}&\tooth{J}&23--31 m&\tooth{11}&\tooth{20}\\\hline
+\end{tabularx}}
+\par\vspace{2mm}{\small\itshape Write the date each tooth appeared next to its letter / number.\par}
+\field{First tooth appeared on}{teeth.first}\par\vspace{2mm}\field{How you (and we!) coped}{teeth.coping}

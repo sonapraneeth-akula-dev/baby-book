@@ -1,0 +1,67 @@
+% ================= PART 3: milestones & firsts =================
+\bookpart{3}{Milestones\\\& Firsts}{Rolling, crawling, walking, talking --\\and a whole year, month by month}{ocean}{sky}{\faShoePrints\ \faSmile\ \faStar}
+
+% milestones.<id> = date
+\pagetitle[\faWalking]{On the Move}
+\begin{center}\begin{tikzpicture}
+  \coordinate (s) at (-8,0);
+  \draw[theme!25,line width=16pt,line cap=round] (-7.5,0) -- (6,0) arc (90:-90:2.6) -- (-6,-5.2) arc (90:270:2.6) -- (7.5,-10.4);
+  \draw[white,line width=1.2pt,dash pattern=on 6pt off 5pt] (-7.5,0) -- (6,0) arc (90:-90:2.6) -- (-6,-5.2) arc (90:270:2.6) -- (7.5,-10.4);
+  \foreach \x/\y/\i/\t/\id [count=\n] in {-6.5/0/\faBaby/Holds head up/headUp, -2.3/0/\faUndo/Rolls over/rollOver,
+      1.9/0/\faChair/Sits up/sitUp, 6/0/\faBaby/Crawls/crawl, 6/-5.2/\faArrowUp/Pulls to stand/pullToStand,
+      1.9/-5.2/\faChild/Stands alone/stand, -2.3/-5.2/\faCouch/Cruises furniture/cruise, -6.5/-5.2/\faShoePrints/First steps!/firstSteps,
+      -6/-10.4/\faWalking/Walks alone/walk, -1.9/-10.4/\faRunning/Runs/run, 2.3/-10.4/\faIcon{level-up-alt}/Climbs stairs/stairs,
+      6.5/-10.4/\faIcon{arrows-alt-v}/Jumps/jump}{
+    \node[circle,fill=white,draw=theme,line width=1.6pt,minimum size=1.55cm,text=theme,font=\LARGE] (m) at (\x,\y) {\i};
+    \node[circle,fill=coral,text=white,font=\scriptsize\bfseries,inner sep=1pt,minimum size=5mm] at (m.north east) {\n};
+    \node[below=1mm of m,font=\headfont\small,text=theme,align=center] {\t\\[1mm]\normalfont\mdseries\scriptsize\color{ink}
+      date \bbor{milestones.\id}{\rule{1.6cm}{.3pt}}};}
+  \node[text=coral,scale=1.8] at (8.2,-10.4) {\faFlagCheckered};
+\end{tikzpicture}\end{center}
+\vspace{2mm}
+\photobox{milestones.crawlPhoto}{.48\linewidth}{5.2cm}{crawling!}\hfill\photobox{milestones.stepsPhoto}{.48\linewidth}{5.2cm}{first steps!}
+
+% firsts.<id>.{date,note}
+\pagetitle[\faSmile]{All My Firsts}
+\begin{tcbraster}[tiles,raster columns=3,raster row skip=2.5mm]
+\foreach \i/\t/\id in {\faSmile/First smile/smile, \faLaughBeam/First laugh/laugh, \faCommentDots/First word/word,
+   \faUtensils/First solid food/solidFood, \faBath/First bath/bath, \faCut/First haircut/haircut, \faMoon/Slept all night/sleptThrough,
+   \faTooth/First tooth/tooth, \faHandPaper/First bye-bye/byeBye, \faHandsHelping/First clap/clap, \faTree/First outing/outing,
+   \faCar/First road trip/roadTrip, \faPlane/First flight/flight, \faSwimmer/First swim/swim, \faUserFriends/First friend/friend,
+   \faBookOpen/Favourite book/book, \faMusic/First dance/dance, \faPalette/First scribble/scribble}{
+  \tile{\raggedright{\color{theme}\LARGE\i}\hspace{2mm}{\headfont\large\t}\par\vspace{3mm}
+    \small date \bbor{firsts.\id.date}{\rule{2.6cm}{.3pt}}\par\vspace{3mm}\bbor{firsts.\id.note}{\rule{\linewidth}{.3pt}}}}
+\end{tcbraster}
+
+% firstWords[] = {word,date,meaning}; the first five also go in the bubbles
+\pagetitle[\faCommentDots]{First Words}
+\begin{center}\begin{tikzpicture}
+  \foreach \x/\y/\c [count=\k from 0] in {-5.5/0/rose, 0/.4/coral, 5.5/0/sea, -2.8/-3.2/plum, 2.8/-3.2/ocean}
+    \node[ellipse callout,fill=\c!20,draw=\c,line width=1pt,minimum width=4.6cm,minimum height=2.3cm,
+          callout relative pointer={(.3,-.9)},font=\large] at (\x,\y) {\bbor{firstWords[\k].word}{\rule{3cm}{.4pt}}};
+\end{tikzpicture}\end{center}\vspace{3mm}
+\rowsreset\addarrayrows{firstWords}{word,date,meaning}{13}
+\datatable{1.75}{|P{3.6cm}|P{2.6cm}|Y|}{\thd{Word (how you said it)}&\thd{Date}&\thd{What it meant}}
+
+% months.<n>.{photo,toys,sleep,eating,skills,moment}; date & sizes come from growth.<n>
+\newcommand\monthpage[1]{\clearpage
+  \pagetitle[\faCalendar*]{Month #1}
+  \begin{minipage}[t]{.6\linewidth}\vspace{0pt}\photobox{months.#1.photo}{\linewidth}{8cm}{#1 \ifnum#1=1 month\else months\fi\ old}\end{minipage}\hfill
+  \begin{minipage}[t]{.36\linewidth}\vspace{0pt}\centering\begin{tikzpicture}
+    \foreach \k in {1,...,12}{\ifnum\k>#1\relax\def\tc{white}\else\def\tc{theme}\fi
+      \fill[\tc,draw=theme,line width=.8pt] (90-\k*30+30:2.1) circle (.26);}
+    \node[font=\headfont\fontsize{40}{40}\selectfont,text=theme] at (0,.25) {#1};
+    \node[font=\small] at (0,-.75) {\ifnum#1=1 month\else months\fi};\end{tikzpicture}\par\vspace{4mm}
+    \raggedright\small
+    {\color{theme}\faCalendar*}\ \field[.85\linewidth]{Date}{growth.#1.date}\par\vspace{2mm}
+    {\color{theme}\faWeightHanging}\ \field[.85\linewidth]{Weight (kg)}{growth.#1.weight}\par\vspace{2mm}
+    {\color{theme}\faRulerVertical}\ \field[.85\linewidth]{Length (cm)}{growth.#1.length}\par\vspace{2mm}
+    {\color{theme}\faCircleNotch}\ \field[.85\linewidth]{Head (cm)}{growth.#1.head}\end{minipage}\par\vspace{9mm}
+  \begin{tcbraster}[tiles,raster columns=2]
+  \icontile{\faPuzzlePiece}{Favourite toys \& games}{\writelines{2}{months.#1.toys}}
+  \icontile{\faMoon}{Sleep habits}{\writelines{2}{months.#1.sleep}}
+  \icontile{\faUtensils}{Eating}{\writelines{2}{months.#1.eating}}
+  \icontile{\faStar}{New skills}{\writelines{2}{months.#1.skills}}
+  \end{tcbraster}\vspace{2mm}
+  \notecard{Our favourite moment this month}{2}{months.#1.moment}}
+\foreach \m in {1,...,12}{\monthpage{\m}}

@@ -1,0 +1,77 @@
+% ================= PART 1 (cont.): pregnancy =================
+\pagetitle[\faHeartbeat]{We're Expecting!}
+\begin{minipage}[t]{.36\linewidth}\vspace{0pt}\photobox{pregnancy.testPhoto}{\linewidth}{6.5cm}{the positive test}\end{minipage}\hfill
+\begin{minipage}[t]{.6\linewidth}\vspace{0pt}
+  \field{We found out on}{pregnancy.foundOn}\par\vspace{2.5mm}\field{How we found out}{pregnancy.howFound}\par\vspace{2.5mm}\field{}{}\par\vspace{2.5mm}
+  \field{Due date}{pregnancy.dueDate}\par\vspace{2.5mm}\field{First person we told}{pregnancy.firstTold}\par\vspace{2.5mm}
+  \field{Mom's first reaction}{pregnancy.momReaction}\par\vspace{2.5mm}\field{Dad's first reaction}{pregnancy.dadReaction}\par\vspace{2.5mm}
+  \field{How we told the family}{pregnancy.howToldFamily}\par\vspace{2.5mm}\field{}{}\end{minipage}
+\vspace{6mm}
+\begin{card}{Family predictions}
+  \renewcommand\arraystretch{1.9}\rowsreset\addarrayrows{pregnancy.predictions}{name,sex,date,weight,hair}{5}%
+  \begin{tabularx}{\linewidth}{>{\bfseries}X c c c c}
+  Name & Boy or girl? & Birth date & Weight & Hair colour\\\hline
+  \rows
+  \end{tabularx}\end{card}
+
+\pagetitle[\faApple*]{How You Grew Inside Me}
+{\centering\begin{tikzpicture}[x=.43cm]
+  % trimester band
+  \foreach \a/\b/\c/\t in {0/13/rose/1st trimester, 13/27/coral/2nd trimester, 27/40/plum/3rd trimester}{
+    \fill[\c!35,rounded corners=3pt] (\a,0) rectangle (\b,.7);
+    \node[font=\small\bfseries,text=\c] at ({(\a+\b)/2},.35) {\t};}
+  \foreach \w in {0,4,...,40} {\draw[ink!60] (\w,0) -- (\w,-.15) node[below,font=\scriptsize] {\w};}
+  \node[font=\scriptsize,anchor=west] at (40.5,-.35) {weeks};
+  % size of baby, fruit comparisons
+  \foreach \w/\r/\f in {4/.06/poppy seed, 8/.12/raspberry, 12/.22/lime, 16/.3/avocado, 20/.38/banana,
+                        24/.46/corn cob, 28/.55/aubergine, 32/.64/squash, 36/.73/papaya, 40/.82/watermelon}{
+    \fill[sea!60] (\w,2.1) circle[radius=\r cm];
+    \node[font=\scriptsize,align=center,text width=1.5cm] at (\w,3.5) {\f};}
+  \node[font=\small\itshape,anchor=west] at (-.4,4.5) {You were about the size of a\ldots};
+  % milestone flags: pregnancy.timeline.<id>.{week,date}
+  \foreach \w/\h/\t/\id in {5/-1.3/We found out/found, 9/-2.6/First heartbeat/heartbeat, 12/-3.9/First scan/firstScan,
+                        20/-1.3/Halfway scan/halfway, 18/-2.6/First kick/kick, 28/-3.9/Hiccups!/hiccups,
+                        32/-1.3/Baby shower/shower, 36/-2.6/Bag packed/bag, 40/-3.9/Due date/due}{
+    \draw[theme!60] (\w,-.5) -- (\w,\h+.35);
+    \fill[theme] (\w,-.5) circle (2pt);
+    \node[fill=white,draw=theme!60,rounded corners=3pt,font=\scriptsize,align=center,inner sep=2pt]
+      at (\w,\h) {\bfseries\t\\[-.5mm]wk \bbor{pregnancy.timeline.\id.week}{\rule{5mm}{.3pt}}\
+        \bbor{pregnancy.timeline.\id.date}{\rule{9mm}{.3pt}}};}
+\end{tikzpicture}\par}
+\vspace{5mm}
+\begin{tcbraster}[tiles,raster columns=3]
+\icontile{\faIceCream}{Cravings}{\writelines{3}{pregnancy.cravings}}
+\icontile{\faTired}{Symptoms}{\writelines{3}{pregnancy.symptoms}}
+\icontile{\faMusic}{Songs I sang to you}{\writelines{3}{pregnancy.songs}}
+\end{tcbraster}
+\vspace{2mm}
+\notecard{How I felt while carrying you}{4}{pregnancy.feelings}
+
+\pagetitle[\faImage]{Ultrasound Scans}
+\begin{tcbraster}[tiles,raster columns=2]
+\foreach \s/\id in {Dating scan/dating, Nuchal (NT) scan/nt, Anatomy scan/anatomy, Growth scan/growth, {3D / 4D scan}/threeD, Another peek/extra}{
+  \tile{{\headfont\color{theme}\s}\par\smallskip\centering\photobox{pregnancy.scans.\id.photo}{\linewidth}{4.2cm}{}\par\raggedright
+  \field[.45\linewidth]{Week}{pregnancy.scans.\id.week}\hfill\field[.5\linewidth]{Date}{pregnancy.scans.\id.date}}}
+\end{tcbraster}
+
+\pagetitle[\faFemale]{My Growing Belly}
+\begin{center}
+\foreach \w [count=\n] in {8,12,16,20,24,28,30,32,34,36,38,40}{%
+  \photobox{pregnancy.belly.\w}{5.3cm}{4.4cm}{week \w}\ifnum\numexpr\n-3*(\n/3)\relax=0 \par\vspace{7mm}\else\hspace{3mm}\fi}
+\end{center}
+
+\pagetitle[\faStethoscope]{Mom's Prenatal Check-ups}
+\begin{tikzpicture}\pic{mama=rose!70};\end{tikzpicture}\hfill
+\begin{minipage}[b]{.82\linewidth}\fields{Doctor / midwife}{pregnancy.doctor}{Hospital}{pregnancy.hospital}%
+  \fields{Mom's blood group}{pregnancy.momBlood}{Baby's blood group (if known)}{pregnancy.babyBlood}\end{minipage}
+\par\vspace{3mm}
+\rowsreset\addarrayrows{pregnancy.checkups}{date,week,weight,bp,notes}{17}
+\datatable{2.05}{|P{2.6cm}|P{1.2cm}|P{1.6cm}|P{1.8cm}|Y|}{\thd{Date}&\thd{Week}&\thd{Weight}&\thd{BP}&\thd{Notes, tests \& results}}
+
+\pagetitle[\faGift]{My Baby Shower}
+\photobox{shower.photo}{\linewidth}{6cm}{}\par\vspace{7mm}
+\fields{Date}{shower.date}{Place}{shower.place}\fields{Hosted by}{shower.host}{Theme}{shower.theme}
+\begin{tcbraster}[raster columns=2,raster equal height,raster column skip=4mm]
+\notecard{Guests}{8}{shower.guests}\notecard{Gifts \& from whom}{8}{shower.gifts}
+\end{tcbraster}\vspace{2mm}
+\notecard{Games, food \& funny moments}{3}{shower.fun}
