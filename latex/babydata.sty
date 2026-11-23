@@ -70,4 +70,15 @@
   \foreach\bb@f in{#2}{\ifbb@first\else\xdef\bb@blank{\bb@blank&}\fi\global\bb@firstfalse}%
   \edef\bb@k{\the\numexpr#3-\bb@n\relax}%
   \ifnum\bb@k>0 \foreach\bb@i in{1,...,\bb@k}{\addrow{\bb@blank}}\fi}
+% vaccine cell with optional combo shot fallback (notes fall back only on lead dose * = 1)
+\newcommand\bbvac[4]{\bbget\bb@vv{vaccines.#1.#4}%
+  \ifx\bb@vv\empty\if\relax\detokenize{#2}\relax\else
+    \ifnum#3=1 \bbget\bb@vv{vaccines.#2.#4}\else
+      \bb@ifeq{#4}{notes}{}{\bbget\bb@vv{vaccines.#2.#4}}\fi\fi\fi
+  \ifx\bb@vv\empty\else\leavevmode{\valuefont\bb@vv}\fi}
+\newcommand\addvaccinerows[1]{\foreach\bb@id/\bb@cmb/\bb@lead/\bb@s in{#1}{%
+  \xdef\rows{\unexpanded\expandafter{\rows}\unexpanded\expandafter{\bb@s}&%
+    \noexpand\bbvac{\bb@id}{\bb@cmb}{\bb@lead}{date}&%
+    \noexpand\bbvac{\bb@id}{\bb@cmb}{\bb@lead}{batch}&%
+    \noexpand\bbvac{\bb@id}{\bb@cmb}{\bb@lead}{notes}\noexpand\\\noexpand\hline}}}
 \endinput

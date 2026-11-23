@@ -3,6 +3,7 @@
 
   "baby": {
     "name": "Anaya",
+    "sex": "girl",
     "fullName": "Anaya Rohan Sharma",
     "nickname": "Anu, Chinni",
     "bornOn": "14 January 2026",
@@ -169,21 +170,15 @@
   },
 
   "vaccines": {
-    "bcg":   { "date": "14 Jan 2026", "batch": "", "notes": "Left upper arm" },
-    "opv0":  { "date": "14 Jan 2026", "batch": "", "notes": "" },
-    "hepb1": { "date": "14 Jan 2026", "batch": "", "notes": "" },
-    "dtp1":  { "date": "25 Feb 2026", "batch": "Hexaxim", "notes": "Mild fever, 1 day" },
-    "ipv1":  { "date": "25 Feb 2026", "batch": "Hexaxim", "notes": "" },
-    "hib1":  { "date": "25 Feb 2026", "batch": "Hexaxim", "notes": "" },
-    "hepb2": { "date": "25 Feb 2026", "batch": "Hexaxim", "notes": "" },
-    "rv1":   { "date": "25 Feb 2026", "batch": "Rotavac", "notes": "" },
-    "pcv1":  { "date": "25 Feb 2026", "batch": "PCV13", "notes": "" },
-    "dtp2":  { "date": "25 Mar 2026", "batch": "Hexaxim", "notes": "" },
-    "ipv2":  { "date": "25 Mar 2026", "batch": "Hexaxim", "notes": "" },
-    "hib2":  { "date": "25 Mar 2026", "batch": "Hexaxim", "notes": "" },
-    "hepb3": { "date": "25 Mar 2026", "batch": "Hexaxim", "notes": "" },
-    "rv2":   { "date": "25 Mar 2026", "batch": "Rotavac", "notes": "" },
-    "pcv2":  { "date": "25 Mar 2026", "batch": "PCV13", "notes": "" }
+    "bcg":      { "date": "14 Jan 2026", "batch": "", "notes": "Left upper arm" },
+    "opv0":     { "date": "14 Jan 2026", "batch": "", "notes": "" },
+    "hepb1":    { "date": "14 Jan 2026", "batch": "", "notes": "" },
+    "combo6w":  { "date": "25 Feb 2026", "batch": "Hexaxim", "notes": "Mild fever, 1 day" },
+    "rv1":      { "date": "25 Feb 2026", "batch": "Rotavac", "notes": "" },
+    "pcv1":     { "date": "25 Feb 2026", "batch": "PCV13", "notes": "" },
+    "combo10w": { "date": "25 Mar 2026", "batch": "Hexaxim", "notes": "" },
+    "rv2":      { "date": "25 Mar 2026", "batch": "Rotavac", "notes": "" },
+    "pcv2":     { "date": "25 Mar 2026", "batch": "PCV13", "notes": "" }
   },
   "vaccinesExtra": [],
 
@@ -197,7 +192,7 @@
 
   "teeth": {
     "E": "", "F": "", "D": "", "G": "", "C": "", "H": "", "B": "", "I": "", "A": "", "J": "",
-    "15": "", "16": "", "14": "", "17": "", "13": "", "18": "", "12": "", "19": "", "11": "", "20": "",
+    "P": "", "O": "", "Q": "", "N": "", "R": "", "M": "", "S": "", "L": "", "T": "", "K": "",
     "first": "", "coping": ""
   },
 

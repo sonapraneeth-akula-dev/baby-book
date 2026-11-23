@@ -34,10 +34,11 @@ fictional example data is tracked.
 Rules:
 
 - A missing, empty or `null` key prints a blank line, so you can fill the book in gradually.
-- Growth values (`growth.<age in months>`) are plain numbers in kg and cm. They feed the growth charts, the growth log, the month pages and the year pages.
+- Growth values (`growth.<age in months>`) are plain numbers in kg and cm. They feed the growth charts (plotted over WHO / IAP 3rd--97th percentile bands using `baby.sex` = `"girl"` or `"boy"`), the growth log, the month pages, the first-birthday page and the year pages.
 - `birth.delivery` is one of `natural`, `assisted`, `c-section`, `water`, `home`, `other`.
 - `familyHistory.<condition>.mom` and `.dad` are `true` or `false` and show as ticks.
-- Vaccines use `vaccines.<id>.{date,batch,notes}`. The ids are listed in `parts/04-growth-health.tex`. Add anything else to `vaccinesExtra[]`.
+- Vaccines use `vaccines.<id>.{date,batch,notes}` (or `vaccines.combo6w`, `combo10w`, `combo14w`, `combo18m` once for hexavalent/pentavalent shots). The ids are listed in `parts/04-growth-health.tex`. Add anything else to `vaccinesExtra[]`.
+- Teeth use Universal primary dentition letters `teeth.<A..J>` (upper right to left) and `teeth.<K..T>` (lower left to right).
 - Arrays such as `doctorVisits`, `illnesses`, `firstWords`, `pregnancy.checkups` and `pregnancy.predictions` fill the table rows and pad them with blanks.
 - Missing photos show an empty frame.
 - pdflatex handles Latin text only. `&`, `%`, `#` and `$` are fine, and `₹` prints as "Rs.". Use `\n` sparingly; it prints as a space.
