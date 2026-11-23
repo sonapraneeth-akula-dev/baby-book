@@ -4,7 +4,16 @@ From the first scan to five years: family tree, pregnancy, birth, growth charts,
 
 ## Build
 
-Needs a TeX distribution with `pdflatex` and `latexmk` (MiKTeX or TeX Live). Missing packages install on first run.
+Needs a TeX distribution with `pdflatex` and `latexmk` (MiKTeX or TeX Live), plus Python 3 to validate JSON.
+
+Install everything automatically from the repository root:
+
+| OS | Command |
+|---|---|
+| Windows (PowerShell) | `powershell -ExecutionPolicy Bypass -File .\scripts\install-deps.ps1` |
+| macOS / Linux | `./scripts/install-deps.sh` |
+
+Then from `latex/`:
 
 | Command | Result |
 |---|---|
