@@ -2,9 +2,17 @@
 % No data file loaded => every accessor returns empty => blank template.
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{babydata}[2026/01/01 JSON data for the baby record book]
-\RequirePackage{jsonparse,pgffor}
+\RequirePackage{iftex,jsonparse,pgffor}
 \JSONParseSet{escape=all}          % & # % $ _ in JSON text typeset safely
-\DeclareUnicodeCharacter{20B9}{Rs.}% the rupee sign has no glyph in these fonts
+\iftutex\else
+  \DeclareUnicodeCharacter{20B9}{Rs.}
+  \DeclareUnicodeCharacter{2018}{\textquoteleft}
+  \DeclareUnicodeCharacter{2019}{\textquoteright}
+  \DeclareUnicodeCharacter{201C}{\textquotedblleft}
+  \DeclareUnicodeCharacter{201D}{\textquotedblright}
+  \DeclareUnicodeCharacter{2013}{\textendash}
+  \DeclareUnicodeCharacter{2014}{\textemdash}
+\fi
 
 \newif\ifbbdata
 % \loadbookdata{file}: load if the file exists, otherwise stay in template mode

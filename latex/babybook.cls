@@ -2,12 +2,27 @@
 % Every fill-in block takes a JSON key (see babydata.sty); empty key => blank.
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{babybook}[2026/01/01 Baby record book]
-\LoadClass[11pt,a4paper,oneside]{book}
-\RequirePackage[a4paper,margin=18mm,top=20mm,bottom=22mm]{geometry}
-\RequirePackage[T1]{fontenc}
-\RequirePackage{nunito}
+\newif\ifbb@twoside
+\DeclareOption{twoside}{\bb@twosidetrue}
+\DeclareOption{oneside}{\bb@twosidefalse}
+\ProcessOptions\relax
+\ifbb@twoside
+  \LoadClass[11pt,a4paper,twoside,openany]{book}
+  \RequirePackage[a4paper,inner=23mm,outer=13mm,top=20mm,bottom=22mm]{geometry}
+\else
+  \LoadClass[11pt,a4paper,oneside]{book}
+  \RequirePackage[a4paper,margin=18mm,top=20mm,bottom=22mm]{geometry}
+\fi
+\RequirePackage{iftex,pdftexcmds}
+\iftutex
+  \RequirePackage{fontspec}
+  \setmainfont{Nunito}[Extension=.otf,UprightFont=*-Regular,BoldFont=*-Bold,ItalicFont=*-Italic,BoldItalicFont=*-BoldItalic]
+  \providecommand\pdfstrcmp{\pdf@strcmp}
+\else
+  \RequirePackage[T1]{fontenc}
+  \RequirePackage[lining,mainfont]{nunito}
+\fi
 \RequirePackage{comfortaa}
-\renewcommand\familydefault{\sfdefault}
 \RequirePackage[table]{xcolor}
 \RequirePackage{fontawesome5}
 \RequirePackage{graphicx,tabularx,array,colortbl}
@@ -65,18 +80,20 @@
 
 % label + value + fill-in line: \field[width]{label}{key}
 \newcommand\field[3][\linewidth]{\bbget\bb@fv{#3}%
-  \begin{minipage}[b]{#1}\raggedright\strut{\color{theme}\bfseries #2}\ %
+  \begin{minipage}[b]{#1}\raggedright\strut\if\relax\detokenize{#2}\relax\else{\color{theme}\bfseries #2}\ \fi
   \ifx\bb@fv\empty\else{\valuefont\bb@fv}\ \fi{\color{theme!35}\hrulefill}\end{minipage}}
 \newcommand\fields[4]{\field[.485\linewidth]{#1}{#2}\hfill\field[.485\linewidth]{#3}{#4}\par\vspace{2.2mm}}
+\newcommand\blankline{\ifbbdata\else\par\vspace{2.2mm}\noindent\strut{\color{theme!35}\hrulefill}\par\fi}
+\newcommand\iconfield[3]{\noindent\makebox[6mm][l]{\color{theme}#1}\field[\dimexpr\linewidth-6mm\relax]{#2}{#3}}
 
 % n ruled writing lines with the key's text written on them (grows if the text is longer)
 \newcommand\writelines[2]{\par\noindent\bbget\bb@wv{#2}\begin{tikzpicture}
   \path (0,0) rectangle (\linewidth,-#1*8mm-1mm);
   \def\bb@nl{#1}%
   \ifx\bb@wv\empty\else
-    \node[anchor=north west,inner sep=0,text width=\linewidth,align=left] (bbt) at (0,-1.7mm)
+    \node[anchor=north west,inner sep=0,text width=\linewidth,align=left] (bbt) at (0,-.9mm)
       {\valuefont\fontsize{\f@size}{8mm}\selectfont\strut\bb@wv\strut\par};
-    \pgfpointanchor{bbt}{south}\dimen@=-\pgf@y\advance\dimen@-1.7mm
+    \pgfpointanchor{bbt}{south}\dimen@=-\pgf@y\advance\dimen@-.9mm
     \pgfmathtruncatemacro\bb@nl{max(#1,round(\dimen@/8mm))}%
   \fi
   \foreach \i in {1,...,\bb@nl} \draw[theme!30] (0,-\i*8mm) -- (\linewidth,-\i*8mm);
@@ -96,12 +113,12 @@
 \newcommand\photobox[4]{\begin{tikzpicture}
   \coordinate (c) at ($(0,0)!.5!(#2,#3)$);
   \bb@ifphoto{#1}{%
-    \begin{scope}\clip[rounded corners=8pt] (0,0) rectangle (#2,#3);
+    \begin{scope}\clip[rounded corners=8pt] (.5pt,.5pt) rectangle ({#2-.5pt},{#3-.5pt});
       \node[inner sep=0] at (c) {\bb@cover{#2}{#3}};\end{scope}
-    \draw[theme,line width=1pt,rounded corners=8pt] (0,0) rectangle (#2,#3);}
-   {\draw[theme,dashed,line width=1pt,rounded corners=8pt,fill=themelight!30] (0,0) rectangle (#2,#3);
+    \draw[theme,line width=1pt,rounded corners=8pt] (.5pt,.5pt) rectangle ({#2-.5pt},{#3-.5pt});}
+   {\draw[theme,dashed,line width=1pt,rounded corners=8pt,fill=themelight!30] (.5pt,.5pt) rectangle ({#2-.5pt},{#3-.5pt});
     \node[text=theme!55,font=\Huge] at (c) {\faCamera};}
-  \node[below,font=\small\itshape,text=ink] at ($(0,0)!.5!(#2,0)$) {#4};
+  \node[below,font=\small\itshape,text=ink] at ($(0,0)!.5!(#2,0)$) {\strut #4};
   \end{tikzpicture}}
 
 % rounded card with boxed title
