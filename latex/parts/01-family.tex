@@ -2,30 +2,58 @@
 \bookpart{1}{Before Birth\\\& Arrival}{Where you come from, how you grew,\\and the day we finally met you}{rose}{blush}{\faHeart\ \faBaby\ \faHeart}
 
 \pagetitle[\faSitemap]{Our Family Tree}
+\bbcount\nsib{family.siblings}
 \begin{center}\begin{tikzpicture}[font=\small]
   % great-grandparents: family.greatGrandparents[0..7], dad's side first
-  \foreach \id/\x/\c/\i [count=\k from 0] in {g1/-7.6/ocean/\faMale, g2/-5.6/ocean/\faFemale, g3/-3.2/ocean/\faMale, g4/-1.2/ocean/\faFemale,
-                            g5/1.2/rose/\faMale, g6/3.2/rose/\faFemale, g7/5.6/rose/\faMale, g8/7.6/rose/\faFemale}
-    {\member[1.45cm]{\id}{\x,0}{\c}{\Large\i}{Great-\\grandparent}{family.greatGrandparents[\k]}}
-  \member{gp1}{-6.6,-4}{ocean}{\LARGE\faMale}{Grandpa}{family.paternalGrandfather}
-  \member{gp2}{-2.2,-4}{ocean}{\LARGE\faFemale}{Grandma}{family.paternalGrandmother}
-  \member{gp3}{2.2,-4}{rose}{\LARGE\faMale}{Grandpa}{family.maternalGrandfather}
-  \member{gp4}{6.6,-4}{rose}{\LARGE\faFemale}{Grandma}{family.maternalGrandmother}
-  \member[2.8cm]{dad}{-4.4,-8.4}{ocean}{\Huge\faMale}{Dad}{family.dad}
-  \member[2.8cm]{mom}{4.4,-8.4}{rose}{\Huge\faFemale}{Mom}{family.mom}
-  \member[3.4cm]{me}{0,-13.4}{coral}{\fontsize{44}{44}\selectfont\faBaby}{ME!}{baby}
-  \member[1.9cm]{s1}{-6,-13.4}{sea}{\LARGE\faChild}{Sibling}{family.siblings[0]}
-  \member[1.9cm]{s2}{6,-13.4}{plum}{\LARGE\faChild}{Sibling}{family.siblings[1]}
+  \foreach \id/\x/\c/\i/\lbl [count=\k from 0] in {
+      g1/-7.65/ocean/\faMale/Great-grandpa, g2/-5.55/ocean/\faFemale/Great-grandma,
+      g3/-3.35/ocean/\faMale/Great-grandpa, g4/-1.25/ocean/\faFemale/Great-grandma,
+      g5/1.25/rose/\faMale/Great-grandpa,   g6/3.35/rose/\faFemale/Great-grandma,
+      g7/5.55/rose/\faMale/Great-grandpa,   g8/7.65/rose/\faFemale/Great-grandma}
+    {\member[1.55cm]{\id}{\x,0}{\c}{\Large\i}{\lbl}{family.greatGrandparents[\k]}}
+  \member{gp1}{-6.4,-4.8}{ocean}{\LARGE\faMale}{\bbolabel{family.paternalGrandfather.callMe}{Grandpa}}{family.paternalGrandfather}
+  \member{gp2}{-2.1,-4.8}{ocean}{\LARGE\faFemale}{\bbolabel{family.paternalGrandmother.callMe}{Grandma}}{family.paternalGrandmother}
+  \member{gp3}{2.1,-4.8}{rose}{\LARGE\faMale}{\bbolabel{family.maternalGrandfather.callMe}{Grandpa}}{family.maternalGrandfather}
+  \member{gp4}{6.4,-4.8}{rose}{\LARGE\faFemale}{\bbolabel{family.maternalGrandmother.callMe}{Grandma}}{family.maternalGrandmother}
+  \member[2.8cm]{dad}{-4.2,-10.2}{ocean}{\Huge\faMale}{Dad}{family.dad}
+  \member[2.8cm]{mom}{4.2,-10.2}{rose}{\Huge\faFemale}{Mom}{family.mom}
   \couple{g1}{g2}{ocean!60}\couple{g3}{g4}{ocean!60}\couple{g5}{g6}{rose!60}\couple{g7}{g8}{rose!60}
   \couple{gp1}{gp2}{ocean!60}\couple{gp3}{gp4}{rose!60}\couple{dad}{mom}{coral!70}
   \foreach \p/\k/\c in {g1g2/gp1/ocean,g3g4/gp2/ocean,g5g6/gp3/rose,g7g8/gp4/rose}
     \draw[\c!60,line width=1.2pt] (\p) -- (\k);
-  \draw[ocean!60,line width=1.2pt] (gp1gp2) |- ($(dad.north)+(0,.9)$) -- (dad);
-  \draw[rose!60,line width=1.2pt] (gp3gp4) |- ($(mom.north)+(0,.9)$) -- (mom);
-  \draw[coral!70,line width=1.2pt] (dadmom) -- (me);
-  \draw[coral!70,line width=1.2pt] (0,-10.9) -| (s1) (0,-10.9) -| (s2);
+  \draw[ocean!60,line width=1.2pt] (gp1gp2) |- ($(dad.north)+(0,.95)$) -- (dad);
+  \draw[rose!60,line width=1.2pt] (gp3gp4) |- ($(mom.north)+(0,.95)$) -- (mom);
+  \ifbbdata
+    \ifnum\nsib=0
+      \member[3.5cm]{me}{0,-16.2}{coral}{\fontsize{44}{44}\selectfont\faBaby}{ME!}{baby}
+      \draw[coral!70,line width=1.2pt] (dadmom) -- (me);
+    \else\ifnum\nsib=1
+      \member[3.4cm]{me}{-2.6,-16.2}{coral}{\fontsize{44}{44}\selectfont\faBaby}{ME!}{baby}
+      \member[2.1cm]{s1}{3.2,-16.2}{sea}{\LARGE\faChild}{Sibling}{family.siblings[0]}
+      \draw[coral!70,line width=1.2pt] (dadmom) -- (0,-13.1) -| (me) (0,-13.1) -| (s1);
+    \else\ifnum\nsib=2
+      \member[3.4cm]{me}{0,-16.2}{coral}{\fontsize{44}{44}\selectfont\faBaby}{ME!}{baby}
+      \member[2.0cm]{s1}{-5.8,-16.2}{sea}{\LARGE\faChild}{Sibling}{family.siblings[0]}
+      \member[2.0cm]{s2}{5.8,-16.2}{plum}{\LARGE\faChild}{Sibling}{family.siblings[1]}
+      \draw[coral!70,line width=1.2pt] (dadmom) -- (me) (0,-13.1) -| (s1) (0,-13.1) -| (s2);
+    \else
+      \member[3.2cm]{me}{0,-16.2}{coral}{\fontsize{42}{42}\selectfont\faBaby}{ME!}{baby}
+      \draw[coral!70,line width=1.2pt] (dadmom) -- (me);
+      \foreach \sx/\sc [count=\sk from 0] in {-6.6/sea, -3.6/plum, 3.6/ocean, 6.6/honey}{
+        \ifnum\sk<\nsib
+          \member[1.85cm]{s\sk}{\sx,-16.2}{\sc}{\LARGE\faChild}{Sibling}{family.siblings[\sk]}
+          \draw[coral!70,line width=1.2pt] (0,-13.1) -| (s\sk);
+        \fi}
+    \fi\fi\fi
+  \else
+    \member[3.4cm]{me}{0,-16.2}{coral}{\fontsize{44}{44}\selectfont\faBaby}{ME!}{baby}
+    \member[1.9cm]{s1}{-5.8,-16.2}{sea}{\LARGE\faChild}{Sibling}{family.siblings[0]}
+    \member[1.9cm]{s2}{5.8,-16.2}{plum}{\LARGE\faChild}{Sibling}{family.siblings[1]}
+    \draw[coral!70,line width=1.2pt] (dadmom) -- (me);
+    \draw[coral!50,dashed,line width=1pt] (0,-13.1) -| (s1) (0,-13.1) -| (s2);
+  \fi
 \end{tikzpicture}\end{center}
-\vfill{\centering\small\itshape Write each name on the line under the circle, or glue in a tiny photo.\par}
+\ifbbdata\else\vfill{\centering\small\itshape Write each name on the line under the circle, or glue in a tiny photo.\par}\fi
 
 \pagetitle[\faUserFriends]{Meet Mom \& Dad}
 \begin{tcbraster}[raster columns=2,raster equal height,raster column skip=4mm]

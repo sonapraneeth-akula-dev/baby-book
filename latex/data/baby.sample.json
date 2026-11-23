@@ -105,7 +105,7 @@
     "date": "14 Jan 2026", "time": "6:42 am", "weight": "3.1 kg", "length": "49 cm",
     "place": "Rainbow Hospital", "head": "34 cm", "eyes": "dark brown", "hair": "black, lots!",
     "doctor": "Dr. Kavitha Reddy", "present": "Papa and Nani",
-    "firstWords": "\"She's here, and she's perfect.\"", "photo": "",
+    "firstWords": "“She’s here, and she’s perfect.”", "photo": "",
     "delivery": "natural",
     "labourStart": "13 Jan, 11 pm", "labourLength": "7 hours",
     "weeks": "39 + 3", "apgar": "8 / 9", "painRelief": "epidural, no complications",
@@ -135,6 +135,7 @@
       "leftFoot":  { "date": "", "photo": "" }
     },
     "braceletPhoto": "",
+    "hairPhoto": "",
     "haircutDate": "", "cutBy": "",
     "hospitalPhoto": "", "room": "Room 412, maternity wing", "nurses": "Sister Mary and Lakshmi",
     "treasures": ""

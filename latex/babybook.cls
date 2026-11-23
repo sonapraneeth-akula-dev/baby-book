@@ -163,8 +163,9 @@
   {\node[circle,draw=#4,line width=1.4pt,fill=#4!12,minimum size=#1,text=#4] (#2) at (#3) {#5};}}
 % family tree member: \member[size]{node}{x,y}{colour}{icon}{role}{person key}
 \newcommand\member[7][2.2cm]{\portrait[#1]{#2}{#3}{#4}{#5}{#7.photo}%
-  \node[below=.6mm of #2,font=\footnotesize\bfseries,text=#4,align=center] (#2-l) {#6};
-  \draw[#4!55] ($(#2-l.south)+(-.45*#1,-.45)$) -- ++(.9*#1,0);
+  \node[below=.6mm of #2,font=\ifdim#1<1.8cm\scriptsize\else\footnotesize\fi\bfseries,text=#4,align=center] (#2-l) {#6};
+  \pgfmathsetlengthmacro\bb@mw{max(1.85cm,.92*#1)}%
+  \draw[#4!55] ($(#2-l.south)+(-.5*\bb@mw,-.45)$) -- ++(\bb@mw,0);
   \node[above,inner sep=1pt,font=\ifdim#1<2cm\scriptsize\else\footnotesize\fi]
     at ($(#2-l.south)+(0,-.45)$) {\bbv{#7.name}};}
 \newcommand\couple[3]{\draw[#3,line width=1.2pt] (#1) -- (#2)

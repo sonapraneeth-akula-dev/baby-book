@@ -63,14 +63,14 @@
 \pagetitle[\faRibbon]{Keepsakes}
 \begin{card}{Hospital ID bracelet}\centering\vspace{2mm}
   \photoor{keepsakes.braceletPhoto}{15.5cm}{2.3cm}{\begin{tikzpicture}\draw[theme,dashed,line width=1pt,rounded corners=12pt,fill=themelight!30] (0,0) rectangle (15.5,2.3);
-  \node[text=theme!60] at (7.75,1.15) {\faTag\enspace tape your bracelet here};\end{tikzpicture}}\end{card}
+  \node[text=theme!60] at (7.75,1.15) {\faTag\enspace \ifbbdata hospital ID bracelet\else tape your bracelet here\fi};\end{tikzpicture}}\end{card}
 \begin{tcbraster}[raster columns=2,raster equal height,raster column skip=4mm]
 \begin{card}{First lock of hair}\centering
-  \begin{tikzpicture}[theme]
+  \photoor{keepsakes.hairPhoto}{6.5cm}{4.5cm}{\begin{tikzpicture}[theme]
   \draw[line width=1.2pt,fill=themelight!30,rounded corners=2pt] (0,0) rectangle (6.5,4.5);
   \draw[line width=1.2pt] (0,4.5) -- (3.25,2) -- (6.5,4.5);
   \node[text=theme,scale=1.8] at (3.25,2) {\faHeart};
-  \node[font=\small] at (3.25,.6) {tape a little envelope here};\end{tikzpicture}\par\vspace{2mm}
+  \node[font=\small] at (3.25,.6) {\ifbbdata keepsake envelope\else tape a little envelope here\fi};\end{tikzpicture}}\par\vspace{2mm}
   \raggedright\field{Date of first haircut}{keepsakes.haircutDate}\par\vspace{2mm}\field{Cut by}{keepsakes.cutBy}\end{card}%
 \begin{card}{Hospital memories}\centering\photobox{keepsakes.hospitalPhoto}{\linewidth}{4.5cm}{name card / first outfit}\par
   \vspace{7mm}\raggedright\field{Room / ward}{keepsakes.room}\par\vspace{2mm}\field{Nurses we loved}{keepsakes.nurses}\end{card}

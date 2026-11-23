@@ -35,9 +35,10 @@
 \newcommand\bbcount[2]{\def#1{0}\ifbbdata\edef\bb@key{#2}%
   \JSONParseArrayCount[store in=#1]{\bbJSON}{\bb@key}\ifx#1\empty\def#1{0}\fi\fi}
 
-% printing: \bbv{key} value or nothing; \bbor{key}{fallback}; \bbif{key}{yes}{no}
+% printing: \bbv{key} value or nothing; \bbor{key}{fallback}; \bbolabel{key}{fallback} (unformatted); \bbif{key}{yes}{no}
 \newcommand\bbv[1]{\bbget\bb@v{#1}\ifx\bb@v\empty\else\leavevmode{\valuefont\bb@v}\fi}
 \newcommand\bbor[2]{\bbget\bb@v{#1}\ifx\bb@v\empty#2\else\leavevmode{\valuefont\bb@v}\fi}
+\newcommand\bbolabel[2]{\bbget\bb@lv{#1}\ifx\bb@lv\empty#2\else\bb@lv\fi}
 \newcommand\bbif[3]{\bbget\bb@v{#1}\ifx\bb@v\empty\expandafter\@secondoftwo\else\expandafter\@firstoftwo\fi{#2}{#3}}
 % ticked box when key == value (booleans are the strings true/false)
 \newcommand\chkif[2]{\bbget\bb@v{#1}\bb@ifeq\bb@v{#2}{\chkyes}{\chk}}
