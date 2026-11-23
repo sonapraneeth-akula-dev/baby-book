@@ -45,7 +45,8 @@
 
 % months.<n>.{photo,toys,sleep,eating,skills,moment}; date & sizes come from growth.<n>
 \newcommand\monthpage[1]{\clearpage
-  \pagetitle[\faCalendar*]{Month #1}
+  \pagetitle*[\faCalendar*]{Month #1}%
+  \ifnum#1=1 \addcontentsline{toc}{section}{Months 1--12}\fi
   \begin{minipage}[t]{.6\linewidth}\vspace{0pt}\photobox{months.#1.photo}{\linewidth}{8cm}{#1 \ifnum#1=1 month\else months\fi\ old}\end{minipage}\hfill
   \begin{minipage}[t]{.36\linewidth}\vspace{0pt}\centering\begin{tikzpicture}
     \foreach \k in {1,...,12}{\ifnum\k>#1\relax\def\tc{white}\else\def\tc{theme}\fi

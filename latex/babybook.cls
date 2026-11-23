@@ -25,13 +25,13 @@
 \RequirePackage{comfortaa}
 \RequirePackage[table]{xcolor}
 \RequirePackage{fontawesome5}
-\RequirePackage{graphicx,tabularx,array,colortbl}
+\RequirePackage{graphicx,tabularx,array,colortbl,multicol}
 \RequirePackage[most]{tcolorbox}
 \RequirePackage{pgfplots}
 \pgfplotsset{compat=1.18}
 \usetikzlibrary{calc,positioning,shapes.geometric,shapes.callouts,decorations.pathmorphing}
 \RequirePackage[hidelinks]{hyperref}
-\pdfstringdefDisableCommands{\def\\{ }}
+\pdfstringdefDisableCommands{\def\\{ }\def\faStar{}\def\quad{ }\def\enspace{ }}
 \RequirePackage{babydata}
 
 \newcommand\headfont{\comfortaa\bfseries}
@@ -67,16 +67,19 @@
   \end{tikzpicture}}\fi}
 
 % ---------- building blocks ----------
-% page title ribbon (also a TOC entry)
-\newcommand\pagetitle[2][\faStar]{\clearpage\phantomsection
-  \addcontentsline{toc}{section}{#2}%
+% page title ribbon (also a TOC entry unless starred: \pagetitle*[icon]{title})
+\NewDocumentCommand\pagetitle{s O{\faStar} m}{\clearpage\phantomsection
+  \IfBooleanF{#1}{\addcontentsline{toc}{section}{#3}}%
   \begin{center}\begin{tikzpicture}
     \node[fill=theme,text=white,rounded corners=14pt,inner xsep=18pt,inner ysep=9pt,
-          font=\headfont\LARGE] (t) {#1\enspace #2};
+          font=\headfont\LARGE] (t) {#2\enspace #3};
     \node[text=theme!50,left=3mm of t] {\faHeart};
     \node[text=theme!50,right=3mm of t] {\faHeart};
   \end{tikzpicture}\end{center}\vspace{-2mm}}
-\newcommand\bookcontents{\@starttoc{toc}}
+\newcommand\bookcontents{{\setlength\columnsep{8mm}\parskip=0pt
+  \renewcommand*\l@chapter[2]{\par\vspace{2.2mm}{\noindent\color{theme}\headfont\small ##1\hfill ##2}\par\vspace{.6mm}}%
+  \renewcommand*\l@section[2]{{\footnotesize\@dottedtocline{1}{2.5mm}{5mm}{##1}{##2}}}%
+  \begin{multicols}{2}\@starttoc{toc}\end{multicols}}}
 
 % label + value + fill-in line: \field[width]{label}{key}
 \newcommand\field[3][\linewidth]{\bbget\bb@fv{#3}%
