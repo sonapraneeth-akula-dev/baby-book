@@ -15,28 +15,33 @@
   \end{tabularx}\end{card}
 
 \pagetitle[\faApple*]{How You Grew Inside Me}
-{\centering\begin{tikzpicture}[x=.43cm]
+{\centering\begin{tikzpicture}[x=.38cm]
   % trimester band
   \foreach \a/\b/\c/\t in {0/13/rose/1st trimester, 13/27/coral/2nd trimester, 27/40/plum/3rd trimester}{
     \fill[\c!35,rounded corners=3pt] (\a,0) rectangle (\b,.7);
     \node[font=\small\bfseries,text=\c] at ({(\a+\b)/2},.35) {\t};}
-  \foreach \w in {0,4,...,40} {\draw[ink!60] (\w,0) -- (\w,-.15) node[below,font=\scriptsize] {\w};}
-  \node[font=\scriptsize,anchor=west] at (40.5,-.35) {weeks};
+  \foreach \w in {0,4,...,40} {\draw[ink!60] (\w,0) -- (\w,-.14) node[below,font=\scriptsize] {\w};}
+  \node[font=\scriptsize,anchor=west] at (40.5,-.32) {weeks};
   % size of baby, fruit comparisons
   \foreach \w/\r/\f in {4/.06/poppy seed, 8/.12/raspberry, 12/.22/lime, 16/.3/avocado, 20/.38/banana,
                         24/.46/corn cob, 28/.55/aubergine, 32/.64/squash, 36/.73/papaya, 40/.82/watermelon}{
-    \fill[sea!60] (\w,2.1) circle[radius=\r cm];
-    \node[font=\scriptsize,align=center,text width=1.5cm] at (\w,3.5) {\f};}
-  \node[font=\small\itshape,anchor=west] at (-.4,4.5) {You were about the size of a\ldots};
-  % milestone flags: pregnancy.timeline.<id>.{week,date}
-  \foreach \w/\h/\t/\id in {5/-1.3/We found out/found, 9/-2.6/First heartbeat/heartbeat, 12/-3.9/First scan/firstScan,
-                        20/-1.3/Halfway scan/halfway, 18/-2.6/First kick/kick, 28/-3.9/Hiccups!/hiccups,
-                        32/-1.3/Baby shower/shower, 36/-2.6/Bag packed/bag, 40/-3.9/Due date/due}{
-    \draw[theme!60] (\w,-.5) -- (\w,\h+.35);
-    \fill[theme] (\w,-.5) circle (2pt);
+    \fill[sea!60] (\w,2.05) circle[radius=\r cm];
+    \node[font=\scriptsize,align=center,text width=1.65cm] at (\w,3.4) {\f};}
+  \node[font=\small\itshape,anchor=west] at (0,4.35) {You were about the size of a\ldots};
+  % milestone rail below tick labels: stems drawn first so cards always sit cleanly on top
+  \def\milestonespec{5/-1.55/We found out/found, 9/-2.85/First heartbeat/heartbeat, 12/-4.15/First scan/firstScan,
+                     18/-2.85/First kick/kick, 20/-1.55/Halfway scan/halfway, 28/-4.15/Hiccups!/hiccups,
+                     32/-1.55/Baby shower/shower, 36/-2.85/Bag packed/bag, 40/-4.15/Due date/due}
+  \draw[theme!25,line width=.6pt] (0,-.78) -- (40,-.78);
+  \foreach \w/\h/\t/\id in \milestonespec {
+    \bbnumor\mw{pregnancy.timeline.\id.week}{\w}
+    \draw[theme!55] (\mw,-.78) -- (\mw,\h);
+    \fill[theme] (\mw,-.78) circle (2pt);}
+  \foreach \w/\h/\t/\id in \milestonespec {
+    \bbnumor\mw{pregnancy.timeline.\id.week}{\w}
     \node[fill=white,draw=theme!60,rounded corners=3pt,font=\scriptsize,align=center,inner sep=2pt]
-      at (\w,\h) {\bfseries\t\\[-.5mm]wk \bbor{pregnancy.timeline.\id.week}{\rule{5mm}{.3pt}}\
-        \bbor{pregnancy.timeline.\id.date}{\rule{9mm}{.3pt}}};}
+      at (\mw,\h) {\bfseries\t\\[-.5mm]wk \bbor{pregnancy.timeline.\id.week}{\rule{4.5mm}{.3pt}}\
+        \bbor{pregnancy.timeline.\id.date}{\rule{8.5mm}{.3pt}}};}
 \end{tikzpicture}\par}
 \vspace{5mm}
 \begin{tcbraster}[tiles,raster columns=3]

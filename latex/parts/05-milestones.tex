@@ -4,19 +4,18 @@
 % milestones.<id> = date
 \pagetitle[\faWalking]{On the Move}
 \begin{center}\begin{tikzpicture}
-  \coordinate (s) at (-8,0);
-  \draw[theme!25,line width=16pt,line cap=round] (-7.5,0) -- (6,0) arc (90:-90:2.6) -- (-6,-5.2) arc (90:270:2.6) -- (7.5,-10.4);
-  \draw[white,line width=1.2pt,dash pattern=on 6pt off 5pt] (-7.5,0) -- (6,0) arc (90:-90:2.6) -- (-6,-5.2) arc (90:270:2.6) -- (7.5,-10.4);
-  \foreach \x/\y/\i/\t/\id [count=\n] in {-6.5/0/\faBaby/Holds head up/headUp, -2.3/0/\faUndo/Rolls over/rollOver,
-      1.9/0/\faChair/Sits up/sitUp, 6/0/\faBaby/Crawls/crawl, 6/-5.2/\faArrowUp/Pulls to stand/pullToStand,
-      1.9/-5.2/\faChild/Stands alone/stand, -2.3/-5.2/\faCouch/Cruises furniture/cruise, -6.5/-5.2/\faShoePrints/First steps!/firstSteps,
-      -6/-10.4/\faWalking/Walks alone/walk, -1.9/-10.4/\faRunning/Runs/run, 2.3/-10.4/\faIcon{level-up-alt}/Climbs stairs/stairs,
-      6.5/-10.4/\faIcon{arrows-alt-v}/Jumps/jump}{
+  \draw[theme!25,line width=16pt,line cap=round] (-7.2,0) -- (5.7,0) arc (90:-90:2.6) -- (-5.7,-5.2) arc (90:270:2.6) -- (7.2,-10.4);
+  \draw[white,line width=1.2pt,dash pattern=on 6pt off 5pt] (-7.2,0) -- (5.7,0) arc (90:-90:2.6) -- (-5.7,-5.2) arc (90:270:2.6) -- (7.2,-10.4);
+  \foreach \x/\y/\i/\t/\id [count=\n] in {-6.2/0/\faBaby/Holds head up/headUp, -2.1/0/\faUndo/Rolls over/rollOver,
+      1.8/0/\faChair/Sits up/sitUp, 5.7/0/\faBaby/Crawls/crawl, 5.7/-5.2/\faArrowUp/Pulls to stand/pullToStand,
+      1.8/-5.2/\faChild/Stands alone/stand, -2.1/-5.2/\faCouch/Cruises furniture/cruise, -6.2/-5.2/\faShoePrints/First steps!/firstSteps,
+      -5.7/-10.4/\faWalking/Walks alone/walk, -1.8/-10.4/\faRunning/Runs/run, 2.1/-10.4/\faIcon{level-up-alt}/Climbs stairs/stairs,
+      6.2/-10.4/\faIcon{arrows-alt-v}/Jumps/jump}{
     \node[circle,fill=white,draw=theme,line width=1.6pt,minimum size=1.55cm,text=theme,font=\LARGE] (m) at (\x,\y) {\i};
     \node[circle,fill=coral,text=white,font=\scriptsize\bfseries,inner sep=1pt,minimum size=5mm] at (m.north east) {\n};
     \node[below=1mm of m,font=\headfont\small,text=theme,align=center] {\t\\[1mm]\normalfont\mdseries\scriptsize\color{ink}
       date \bbor{milestones.\id}{\rule{1.6cm}{.3pt}}};}
-  \node[text=coral,scale=1.8] at (8.2,-10.4) {\faFlagCheckered};
+  \node[text=coral,scale=1.8] at (7.9,-10.4) {\faFlagCheckered};
 \end{tikzpicture}\end{center}
 \vspace{2mm}
 \photobox{milestones.crawlPhoto}{.48\linewidth}{5.2cm}{crawling!}\hfill\photobox{milestones.stepsPhoto}{.48\linewidth}{5.2cm}{first steps!}
@@ -54,10 +53,10 @@
     \node[font=\headfont\fontsize{40}{40}\selectfont,text=theme] at (0,.25) {#1};
     \node[font=\small] at (0,-.75) {\ifnum#1=1 month\else months\fi};\end{tikzpicture}\par\vspace{4mm}
     \raggedright\small
-    {\color{theme}\faCalendar*}\ \field[.85\linewidth]{Date}{growth.#1.date}\par\vspace{2mm}
-    {\color{theme}\faWeightHanging}\ \field[.85\linewidth]{Weight (kg)}{growth.#1.weight}\par\vspace{2mm}
-    {\color{theme}\faRulerVertical}\ \field[.85\linewidth]{Length (cm)}{growth.#1.length}\par\vspace{2mm}
-    {\color{theme}\faCircleNotch}\ \field[.85\linewidth]{Head (cm)}{growth.#1.head}\end{minipage}\par\vspace{9mm}
+    \iconfield{\faCalendar*}{Date}{growth.#1.date}\par\vspace{2mm}
+    \iconfield{\faWeightHanging}{Weight (kg)}{growth.#1.weight}\par\vspace{2mm}
+    \iconfield{\faRulerVertical}{Length (cm)}{growth.#1.length}\par\vspace{2mm}
+    \iconfield{\faCircleNotch}{Head (cm)}{growth.#1.head}\end{minipage}\par\vspace{9mm}
   \begin{tcbraster}[tiles,raster columns=2]
   \icontile{\faPuzzlePiece}{Favourite toys \& games}{\writelines{2}{months.#1.toys}}
   \icontile{\faMoon}{Sleep habits}{\writelines{2}{months.#1.sleep}}
