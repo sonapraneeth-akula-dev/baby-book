@@ -86,6 +86,9 @@
   \begin{minipage}[b]{#1}\raggedright\strut\if\relax\detokenize{#2}\relax\else{\color{theme}\bfseries #2}\ \fi
   \ifx\bb@fv\empty\else{\valuefont\bb@fv}\ \fi{\color{theme!35}\hrulefill}\end{minipage}}
 \newcommand\fields[4]{\field[.485\linewidth]{#1}{#2}\hfill\field[.485\linewidth]{#3}{#4}\par\vspace{2.2mm}}
+\newcommand\fieldor[3]{\bbget\bb@fv{#2}%
+  \begin{minipage}[b]{\linewidth}\raggedright\strut{\color{theme}\bfseries #1}\ %
+  \ifx\bb@fv\empty #3\else{\valuefont\bb@fv}\ \fi{\color{theme!35}\hrulefill}\end{minipage}}
 \newcommand\blankline{\ifbbdata\else\par\vspace{2.2mm}\noindent\strut{\color{theme!35}\hrulefill}\par\fi}
 \newcommand\iconfield[3]{\noindent\makebox[6mm][l]{\color{theme}#1}\field[\dimexpr\linewidth-6mm\relax]{#2}{#3}}
 

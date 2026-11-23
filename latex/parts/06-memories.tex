@@ -1,6 +1,18 @@
 % ================= PART 4: memories & holidays =================
 \bookpart{4}{Memories,\\Holidays \& Beyond}{Celebrations, letters from loved ones,\\and the years from one to five}{plum}{lav}{\faGifts\ \faBirthdayCake\ \faEnvelopeOpenText}
 
+% ceremonies.<id>.{name,photo,date,place,notes}
+\newcommand\ceremonycard[3]{\tile{{\color{theme}\large #1}\hspace{1.5mm}{\headfont\normalsize\bbolabel{ceremonies.#3.name}{#2}}\par\vspace{1.5mm}
+  \centering\photobox{ceremonies.#3.photo}{\linewidth}{3.0cm}{}\par\raggedright\vspace{1.5mm}\small
+  \field[.48\linewidth]{Date}{ceremonies.#3.date}\hfill\field[.48\linewidth]{Place}{ceremonies.#3.place}\par\vspace{1.5mm}
+  \field{We remember}{ceremonies.#3.notes}}}
+\pagetitle[\faSpa]{Special Ceremonies}
+\begin{tcbraster}[tiles,raster columns=2,raster row skip=2.5mm]
+\ceremonycard{\faBaby}{Naming Ceremony}{naming}\ceremonycard{\faUtensils}{First Solids (Annaprashan)}{solids}
+\ceremonycard{\faCut}{First Haircut (Mundan)}{haircut}\ceremonycard{\faGem}{Ear Piercing / Blessing}{piercing}
+\ceremonycard{\faIcon{feather-alt}}{First Letters (Aksharabhyasam)}{letters}\ceremonycard{\faHeart}{Family Ceremony}{custom}
+\end{tcbraster}
+
 % holidays.<id>.{photo,date,where,with,remember}; custom1/custom2 also take a name
 \newcommand\holidaycard[3]{\tile{{\color{theme}\LARGE #1}\hspace{2mm}{\headfont\large #2}\par\vspace{2mm}
   \centering\photobox{holidays.#3.photo}{\linewidth}{6cm}{}\par\raggedright\vspace{2mm}
@@ -35,8 +47,9 @@
   \field{Date}{birthday1.date}\par\vspace{2.5mm}\field{Place}{birthday1.place}\par\vspace{2.5mm}
   \field{Theme}{birthday1.theme}\par\vspace{2.5mm}\field{Cake flavour}{birthday1.cake}\par\vspace{2.5mm}
   \field{Outfit}{birthday1.outfit}\par\vspace{2.5mm}\field{Best gift}{birthday1.gift}\par\vspace{2.5mm}
-  \field{Weight \& height}{birthday1.size}\par\vspace{2.5mm}
-  \field{Number of teeth}{birthday1.teeth}\par\vspace{2.5mm}\field{Words you could say}{birthday1.words}\end{minipage}\par\vspace{5mm}
+  \fieldor{Weight \& height}{birthday1.size}{\bbif{growth.12.weight}{\bbv{growth.12.weight}{\valuefont\ kg\bbif{growth.12.length}{, \bbv{growth.12.length}\ cm}{}}\ }
+    {\bbif{growth.12.length}{\bbv{growth.12.length}{\valuefont\ cm}\ }{}}}\par\vspace{2.5mm}
+  \fieldor{Number of teeth}{birthday1.teeth}{\bbif{years.1.teeth}{\bbv{years.1.teeth}\ }{}}\par\vspace{2.5mm}\field{Words you could say}{birthday1.words}\end{minipage}\par\vspace{5mm}
 \photobox{birthday1.candlePhoto}{.48\linewidth}{6cm}{blowing the candle}\hfill\photobox{birthday1.cakeSmashPhoto}{.48\linewidth}{6cm}{cake smash!}\par\vspace{8mm}
 \notecard{Guest list}{4}{birthday1.guests}
 

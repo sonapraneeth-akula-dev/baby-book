@@ -40,8 +40,9 @@ Rules:
 - Vaccines use `vaccines.<id>.{date,batch,notes}` (or `vaccines.combo6w`, `combo10w`, `combo14w`, `combo18m` once for hexavalent/pentavalent shots). The ids are listed in `parts/04-growth-health.tex`. Add anything else to `vaccinesExtra[]`.
 - Teeth use Universal primary dentition letters `teeth.<A..J>` (upper right to left) and `teeth.<K..T>` (lower left to right).
 - Arrays such as `doctorVisits`, `illnesses`, `firstWords`, `pregnancy.checkups` and `pregnancy.predictions` fill the table rows and pad them with blanks.
+- Ceremonies (`ceremonies.{naming,solids,haircut,piercing,letters,custom}`) each accept an optional custom `name` alongside `photo`, `date`, `place` and `notes`.
 - Missing photos show an empty frame.
-- pdflatex handles Latin text only. `&`, `%`, `#` and `$` are fine, and `₹` prints as "Rs.". Use `\n` sparingly; it prints as a space.
+- `latexmk -pdf` (`pdflatex`) handles Latin text, smart quotes/dashes and prints `₹` as "Rs."; `latexmk -lualatex` (`lualatex`) supports full Unicode via `fontspec`. Pass `\documentclass[twoside]{babybook}` for inner/outer hardcover binding margins. Use `\n` sparingly; it prints as a space.
 - Tables don't break across pages, so keep long lists within the printed rows.
 
 ## Files

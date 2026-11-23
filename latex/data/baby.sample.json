@@ -233,6 +233,15 @@
     "3": { "photo": "", "toys": "", "sleep": "", "eating": "", "skills": "", "moment": "" }
   },
 
+  "ceremonies": {
+    "naming":   { "name": "Barasala (Naming)", "photo": "", "date": "25 Jan 2026", "place": "Home, Hyderabad", "notes": "Whispered Anaya in your ear with honey and betel leaf" },
+    "solids":   { "name": "Annaprashan", "photo": "", "date": "", "place": "", "notes": "Planned for 6 months with silver bowl from Dadu" },
+    "haircut":  { "name": "Mundan", "photo": "", "date": "", "place": "", "notes": "" },
+    "piercing": { "name": "Karnavedha", "photo": "", "date": "", "place": "", "notes": "" },
+    "letters":  { "name": "Aksharabhyasam", "photo": "", "date": "", "place": "", "notes": "" },
+    "custom":   { "name": "", "photo": "", "date": "", "place": "", "notes": "" }
+  },
+
   "holidays": {
     "diwali":    { "photo": "", "date": "", "where": "", "with": "", "remember": "" },
     "christmas": { "photo": "", "date": "", "where": "", "with": "", "remember": "" },
