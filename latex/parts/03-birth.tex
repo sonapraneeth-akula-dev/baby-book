@@ -1,17 +1,17 @@
 % ================= PART 1 (cont.): birth & arrival =================
 \pagetitle[\faBaby]{Hello, World!}
 \begin{center}\begin{tikzpicture}
-  \node[circle,fill=themelight,minimum size=6.2cm] (c) {};
-  \node[circle,draw=theme,dashed,line width=1pt,minimum size=5.6cm] at (c) {};
-  \node[text=theme,font=\fontsize{80}{80}\selectfont] at ($(c)+(0,.3)$) {\faBaby};
-  \node[font=\headfont\large,text=theme] at ($(c)+(0,-2)$) {I'm here!};
+  \node[circle,fill=themelight!75,draw=theme!55,line width=.8pt,minimum size=5.8cm] (c) {};
+  \draw[honey!65,line width=.45pt] (c) circle (2.68cm);
+  \node[text=theme,font=\fontsize{72}{72}\selectfont] at ($(c)+(0,.35)$) {\faBaby};
+  \node[font=\displayfont\itshape\Large,text=theme!85!black] at ($(c)+(0,-1.85)$) {I'm here!};
   % birth.<key>
   \foreach \a/\i/\t/\col/\k in {90/\faCalendar*/Date/rose/date, 45/\faClock/Time/coral/time, 0/\faWeightHanging/Weight/honey/weight,
       -45/\faRulerVertical/Length/sea/length, -90/\faHospital/Place/ocean/place, -135/\faCircleNotch/Head/plum/head,
       180/\faEye/Eye colour/ocean/eyes, 135/\faCut/Hair colour/rose/hair}{
-    \draw[\col!60,line width=1pt] (c) ++(\a:3.1) -- ++(\a:.9);
-    \node[circle,fill=white,draw=\col,line width=1.5pt,minimum size=2.9cm,align=center,text width=2.3cm] at ($(c)+(\a:5.4)$)
-      {{\color{\col}\LARGE\i}\\[1mm]{\headfont\small\t}\\[3mm]{\footnotesize\bbor{birth.\k}{{\color{\col!50}\rule{2cm}{.5pt}}}}};}
+    \draw[\col!45,line width=.65pt] (c) ++(\a:2.9) -- ++(\a:1.05);
+    \node[circle,fill=white,draw=\col!60,line width=.75pt,minimum size=2.85cm,align=center,text width=2.3cm] at ($(c)+(\a:5.4)$)
+      {{\color{\col}\Large\i}\\[.8mm]{\headfont\normalsize\color{ink}\t}\\[2.2mm]{\footnotesize\bbor{birth.\k}{{\color{\col!45}\rule{1.8cm}{.4pt}}}}};}
 \end{tikzpicture}\end{center}
 \vspace{2mm}
 \fields{Doctor / midwife}{birth.doctor}{Who was there}{birth.present}

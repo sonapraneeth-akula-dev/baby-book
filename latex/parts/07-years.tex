@@ -42,15 +42,17 @@
   \icontile{\faFutbol}{Game}{\writelines{1}{years.#1.favourites.game}}
   \icontile{\faMapMarker*}{Place}{\writelines{1}{years.#1.favourites.place}}
   \end{tcbraster}\vspace{3mm}
-  {\headfont\Large\color{theme}\faQuoteLeft\ Things you said\ldots}\par\vspace{2mm}
+  {\headfont\Large\color{theme!85!black}\faQuoteLeft\enspace Little things you said\ldots}\par\vspace{2mm}
   \begin{center}\begin{tikzpicture}
-    \foreach \x/\y/\p [count=\q from 0] in {-4.3/0/{(.35,-.9)}, 4.3/0/{(-.35,-.9)}, 0/-3.1/{(.4,-.9)}}
-      \node[rectangle callout,rounded corners=10pt,fill=themelight!60,draw=theme,line width=1pt,
-        minimum width=8cm,minimum height=2.5cm,callout relative pointer=\p,text width=7.4cm,align=center]
-        at (\x,\y) {\bbv{years.#1.quotes[\q]}};
+    \foreach \x/\y [count=\q from 0] in {-4.35/0, 4.35/0, 0/-3.05}{
+      \filldraw[fill=white,draw=theme!45,line width=.6pt,rounded corners=5pt]
+        ($(\x,\y)+(-4.1cm,-1.28cm)$) rectangle ($(\x,\y)+(4.1cm,1.28cm)$);
+      \node[font=\displayfont\fontsize{32}{32}\selectfont,text=themelight!95!theme,anchor=north west]
+        at ($(\x,\y)+(-3.95cm,1.22cm)$) {``};
+      \node[text width=7.2cm,align=center,font=\small] at (\x,\y) {\bbv{years.#1.quotes[\q]}};}
   \end{tikzpicture}\end{center}\vspace{2mm}
   \notecard{A note from Mom \& Dad}{3}{years.#1.note}}
-\foreach \y in {1,...,5}{\yearpages{\y}}
+\foreach \y in {1,...,5}{\expandafter\yearpages\expandafter{\y}}
 
 % timeCapsule.{hopes,world,photo,sealedOn,openOn}
 \clearpage\settheme{rose}{blush}\setrunning{Time Capsule}
@@ -58,5 +60,5 @@
 \begin{center}\small\itshape Seal this page (or an envelope) and open it together on your 18th birthday.\end{center}
 \notecard{What we hope for you}{8}{timeCapsule.hopes}
 \notecard{What the world is like right now}{6}{timeCapsule.world}
-\photobox{timeCapsule.photo}{\linewidth}{6.3cm}{our family today}\par\vspace{7mm}
+\photobox{timeCapsule.photo}{\linewidth}{5.6cm}{our family today}\par\vspace{5mm}
 \fields{Sealed on}{timeCapsule.sealedOn}{To be opened on}{timeCapsule.openOn}

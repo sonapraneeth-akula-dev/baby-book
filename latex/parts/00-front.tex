@@ -1,22 +1,46 @@
 % ================= COVER =================
 \begin{tikzpicture}[remember picture,overlay]
-  \fill[sky!70] (current page.south west) rectangle (current page.north east);
-  \fill[blush!80] ($(current page.south west)+(0,0)$) rectangle ($(current page.south east)+(0,7)$);
-  \foreach \x/\r in {0/1.6,2.5/1.3,5/1.9,8.2/1.4,11/2,14/1.5,16.8/1.9,19.6/1.5,21.5/1.3}
-     \fill[white] ($(current page.south west)+(\x,7)$) circle (\r);
-  \node[text=butter,font=\fontsize{72}{72}\selectfont] at ($(current page.north east)+(-2.4,-2.5)$) {\faMoon};
-  \foreach \x/\y/\s in {2.6/-2.6/1.8, 5.5/-6.3/1.2, 10.5/-2.1/1.4, 15.2/-6.6/1, 2.5/-10/1.1, 18.2/-11/1.4, 8/-11.5/.9}
-     \node[text=white,scale=\s] at ($(current page.north west)+(\x,\y)$) {\faStar};
-  \node[font=\headfont\fontsize{44}{48}\selectfont,text=ocean] at ($(current page.north)+(0,-4.4)$) {Our Little One};
-  \node[circle,fill=white,minimum size=7.2cm] (b) at ($(current page.center)+(0,1.4)$) {};
-  \node[text=rose,font=\fontsize{116}{116}\selectfont] at (b) {\faBaby};
-  \foreach \a/\c in {30/rose,150/ocean,270/sea} \node[text=\c,scale=1.8] at ($(b)+(\a:4.1)$) {\faHeart};
-  \node[font=\Large\itshape,text=ink,align=center] at ($(b.south)+(0,-1.85)$)
-     {A Baby Record Book\\[1mm]\normalsize from the very first scan to five years old};
+  \fill[sky!58!cream] (current page.south west) rectangle (current page.north east);
+  \draw[ocean!42,line width=.75pt] ($(current page.south west)+(12mm,12mm)$) rectangle ($(current page.north east)+(-12mm,-12mm)$);
+  \draw[honey!62,line width=.4pt] ($(current page.south west)+(14.5mm,14.5mm)$) rectangle ($(current page.north east)+(-14.5mm,-14.5mm)$);
+  \foreach \p/\dx/\dy in {south west/12mm/12mm, south east/-12mm/12mm, north west/12mm/-12mm, north east/-12mm/-12mm}
+    \node[diamond,fill=honey!85!ocean,inner sep=1.5pt] at ($(current page.\p)+(\dx,\dy)$) {};
+  % arched cream bookplate
+  \path[fill=cream,draw=ocean!38,line width=.7pt]
+    ($(current page.center)+(-7.1cm,-11.2cm)$) -- ($(current page.center)+(-7.1cm,4.2cm)$)
+    arc (180:0:7.1cm) -- ($(current page.center)+(7.1cm,-11.2cm)$) -- cycle;
+  \path[draw=honey!50,line width=.35pt]
+    ($(current page.center)+(-6.8cm,-10.9cm)$) -- ($(current page.center)+(-6.8cm,4.2cm)$)
+    arc (180:0:6.8cm) -- ($(current page.center)+(6.8cm,-10.9cm)$) -- cycle;
+  % celestial crown motif
+  \draw[honey!55,densely dotted,line width=.6pt] ($(current page.center)+(-3.4cm,7.9cm)$) arc (155:25:3.75cm);
+  \node[text=honey!85,font=\fontsize{26}{26}\selectfont] at ($(current page.center)+(0,9.45cm)$) {\faMoon};
+  \foreach \sx/\sy/\ss in {-2.6/8.9/1.1, 2.6/8.9/1.1, -4.1/7.7/.8, 4.1/7.7/.8, -1.3/9.6/.7, 1.3/9.6/.7}
+    \node[diamond,fill=honey!75,inner sep=\ss pt] at ($(current page.center)+(\sx cm,\sy cm)$) {};
+  % title & subtitle
+  \node[font=\headfont\fontsize{44}{48}\selectfont,text=ink] (ct) at ($(current page.center)+(0,6.7cm)$) {Our Little One};
+  \draw[honey!75,line width=.6pt] ($(ct.south)+(-3.2cm,-3.5mm)$) -- ($(ct.south)+(-4mm,-3.5mm)$)
+    ($(ct.south)+(4mm,-3.5mm)$) -- ($(ct.south)+(3.2cm,-3.5mm)$);
+  \node[diamond,fill=rose!85,inner sep=1.4pt] at ($(ct.south)+(0,-3.5mm)$) {};
+  \node[font=\displayfont\itshape\fontsize{16}{21}\selectfont,text=ink!85,align=center] at ($(ct.south)+(0,-13.5mm)$)
+    {A Baby Record Book\\[1mm]\footnotesize\normalfont\color{ink!65}FROM THE VERY FIRST SCAN TO FIVE YEARS OLD};
+  % central heirloom medallion
+  \node[circle,fill=blush!65,draw=rose!55,line width=.8pt,minimum size=5.8cm] (b) at ($(current page.center)+(0,-.3cm)$) {};
+  \draw[honey!65,line width=.45pt] (b) circle (2.68cm);
+  \node[text=rose,font=\fontsize{84}{84}\selectfont] at (b) {\faBaby};
+  \foreach \a/\c in {0/honey, 180/honey, 60/ocean!75, 120/sea!75, 240/sea!75, 300/ocean!75}
+    \node[diamond,fill=\c,inner sep=1.2pt] at ($(b)+(\a:3.35cm)$) {};
+  \node[text=rose!80,scale=1.1] at ($(b)+(90:3.35cm)$) {\faHeart};
+  \node[text=rose!80,scale=1.1] at ($(b)+(270:3.35cm)$) {\faHeart};
+  % nameplate plaque
+  \coordinate (np) at ($(current page.center)+(0,-7.8cm)$);
+  \filldraw[fill=white,draw=honey!65,line width=.65pt,rounded corners=4pt] ($(np)+(-5.4cm,-1.35cm)$) rectangle ($(np)+(5.4cm,1.35cm)$);
+  \draw[ocean!28,line width=.35pt,rounded corners=3pt] ($(np)+(-5.2cm,-1.15cm)$) rectangle ($(np)+(5.2cm,1.15cm)$);
   \bbif{baby.name}
-    {\node[font=\headfont\fontsize{26}{30}\selectfont,text=ocean] at ($(current page.south)+(0,3.9)$) {\bbv{baby.name}};}
-    {\node at ($(current page.south)+(0,4.2)$) {\rule{9cm}{.6pt}};
-     \node[font=\small\itshape,text=ink!80] at ($(current page.south)+(0,3.3)$) {my name};}
+    {\node[font=\scriptsize\bfseries,text=ink!55] at ($(np)+(0,.62cm)$) {THIS BOOK BELONGS TO};
+     \node[font=\headfont\fontsize{25}{28}\selectfont,text=written] at ($(np)+(0,-.22cm)$) {\bbv{baby.name}};}
+    {\draw[theme!45,densely dotted,line width=.6pt] ($(np)+(-4.0cm,-.15cm)$) -- ($(np)+(4.0cm,-.15cm)$);
+     \node[font=\displayfont\itshape\normalsize,text=ink!70] at ($(np)+(0,-.72cm)$) {my name};}
 \end{tikzpicture}
 \clearpage
 

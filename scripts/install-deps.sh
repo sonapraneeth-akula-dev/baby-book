@@ -36,7 +36,7 @@ case "$OS" in
 esac
 
 PACKAGES=(
-  latexmk jsonparse nunito comfortaa fontawesome5
+  latexmk jsonparse nunito comfortaa cormorantgaramond fontawesome5
   geometry xcolor colortbl tcolorbox tikzfill
   pdfcol environ listings listingsutf8 pgf
   pgfplots hyperref rerunfilecheck uniquecounter
@@ -44,7 +44,7 @@ PACKAGES=(
 )
 
 SENTINELS=(
-  jsonparse.sty nunito.sty comfortaa.sty fontawesome5.sty
+  jsonparse.sty nunito.sty comfortaa.sty CormorantGaramond.sty fontawesome5.sty
   geometry.sty xcolor.sty colortbl.sty tcolorbox.sty tikzfill.sty
   pdfcol.sty environ.sty listings.sty listingsutf8.sty pgf.sty
   pgfplots.sty hyperref.sty rerunfilecheck.sty uniquecounter.sty

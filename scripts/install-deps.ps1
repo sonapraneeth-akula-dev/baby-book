@@ -13,7 +13,7 @@ if ((Test-Path Variable:IsWindows) -and (-not $IsWindows)) {
 }
 
 $Packages = @(
-    'latexmk', 'jsonparse', 'nunito', 'comfortaa', 'fontawesome5',
+    'latexmk', 'jsonparse', 'nunito', 'comfortaa', 'cormorantgaramond', 'fontawesome5',
     'geometry', 'xcolor', 'colortbl', 'tcolorbox', 'tikzfill',
     'pdfcol', 'environ', 'listings', 'listingsutf8', 'pgf',
     'pgfplots', 'hyperref', 'rerunfilecheck', 'uniquecounter',

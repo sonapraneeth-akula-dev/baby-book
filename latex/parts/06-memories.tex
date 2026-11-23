@@ -62,11 +62,18 @@
 \newcommand\letterpage[2]{\bbget\bblf{letters.#2.from}%
   \edef\bblt{A Letter From \ifx\bblf\empty\unexpanded{#1}\else\unexpanded\expandafter{\bblf}\fi}%
   \expandafter\pagetitle\expandafter[\expandafter\faEnvelope\expandafter]\expandafter{\bblt}%
-  \begin{center}\begin{tikzpicture}
-    \draw[theme,line width=1.2pt,fill=themelight!40,rounded corners=2pt] (0,0) rectangle (5,3.2);
-    \draw[theme,line width=1.2pt] (0,3.2) -- (2.5,1.4) -- (5,3.2);
-    \node[text=rose,scale=1.8] at (2.5,1.4) {\faHeart};\end{tikzpicture}\end{center}
-  \field[.5\linewidth]{Date}{letters.#2.date}\par\vspace{4mm}{\headfont\Large\color{theme} Dear little one,}\par
-  \writelines{19}{letters.#2.text}\vspace{2mm}\hfill{\headfont\color{theme}With love,}\ \bbor{letters.#2.from}{\rule{5cm}{.4pt}}}
+  \begin{tcolorbox}[enhanced,colback=white,colframe=theme!45,boxrule=.6pt,arc=3mm,
+    borderline={.3pt}{1.4mm}{honey!55},top=4mm,bottom=4mm,left=5mm,right=5mm,
+    fuzzy shadow={.6mm}{-.6mm}{0mm}{.12mm}{ink!7}]
+    \begin{center}\begin{tikzpicture}
+      \draw[theme!40,line width=.5pt] (-24mm,0) -- (-5.5mm,0) (5.5mm,0) -- (24mm,0);
+      \node[circle,fill=rose!18,draw=rose!65,line width=.6pt,minimum size=8.5mm,inner sep=0pt,text=rose] at (0,0) {\small\faHeart};
+    \end{tikzpicture}\end{center}\vspace{-2mm}
+    \hfill\field[.44\linewidth]{Date}{letters.#2.date}\par\vspace{3mm}
+    {\displayfont\itshape\LARGE\color{theme!85!black} Dearest little one,}\par\vspace{1mm}
+    \writelines{17}{letters.#2.text}\vspace{3mm}
+    \hfill{\displayfont\itshape\large\color{theme!85!black}With all my love,}\enspace
+    \bbor{letters.#2.from}{\makebox[4.8cm]{\bbrule}}
+  \end{tcolorbox}}
 \foreach \w/\k in {Mom/mom, Dad/dad, Grandma \& Grandpa/grandparents1, Grandma \& Grandpa/grandparents2,
                    Someone Special/special1, Someone Special/special2}{\letterpage{\w}{\k}}
