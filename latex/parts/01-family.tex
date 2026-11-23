@@ -58,7 +58,7 @@
 \pagetitle[\faUserFriends]{Meet Mom \& Dad}
 \begin{tcbraster}[raster columns=2,raster equal height,raster column skip=4mm]
 \foreach \who/\k/\c in {Mom/mom/rose, Dad/dad/ocean}{%
-\begin{card}[colframe=\c,colbacktitle=\c]{\who}
+\begin{card}[accent=\c]{\who}
   \centering\photobox{family.\k.photo}{4.2cm}{4.2cm}{}\par\raggedright\vspace{2mm}\colorlet{theme}{\c}
   \field{Name}{family.\k.name}\par\vspace{2mm}\field{Birthday}{family.\k.birthday}\par\vspace{2mm}
   \field{Hometown}{family.\k.hometown}\par\vspace{2mm}\field{Work}{family.\k.work}\par\vspace{2mm}
@@ -73,7 +73,7 @@
 \begin{tcbraster}[raster columns=2,raster equal height,raster column skip=4mm,raster row skip=4mm]
 \foreach \side/\who/\c/\k in {Dad's/Grandpa/ocean/paternalGrandfather, Dad's/Grandma/ocean/paternalGrandmother,
                               Mom's/Grandpa/rose/maternalGrandfather, Mom's/Grandma/rose/maternalGrandmother}{%
-\begin{card}[colframe=\c,colbacktitle=\c]{\side\ side \textbullet\ \who}
+\begin{card}[accent=\c]{\side\ side \textbullet\ \who}
   \colorlet{theme}{\c}\begin{minipage}[t]{2.9cm}\vspace{0pt}\begin{tikzpicture}
     \portrait[2.7cm]{gp}{0,0}{\c}{\fontsize{34}{34}\selectfont\ifx\who\grandpaname\faMale\else\faFemale\fi}{family.\k.photo}
     \end{tikzpicture}\end{minipage}\hfill

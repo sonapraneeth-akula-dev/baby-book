@@ -64,7 +64,7 @@
 \begin{card}{Vital info}\field{Blood group}{health.bloodGroup}\par\vspace{2mm}\field{Birth hospital no.}{health.hospitalNo}\par\vspace{2mm}
   \field{Paediatrician}{health.paediatrician}\par\vspace{2mm}\field{Phone}{health.paediatricianPhone}\par\vspace{2mm}
   \field{Dentist}{health.dentist}\par\vspace{2mm}\field{Phone}{health.dentistPhone}\end{card}%
-\begin{card}[colframe=rose,colbacktitle=rose]{\faExclamationTriangle\ Allergies}\colorlet{theme}{rose}
+\begin{card}[accent=rose]{\faExclamationTriangle\ Allergies}\colorlet{theme}{rose}
   \field{Food}{health.allergies.food}\par\vspace{2mm}\field{Medicine}{health.allergies.medicine}\par\vspace{2mm}
   \field{Other}{health.allergies.other}\par\vspace{2mm}\field{Reaction}{health.allergies.reaction}\par\vspace{2mm}
   \field{Treatment}{health.allergies.treatment}\blankline\end{card}
@@ -150,9 +150,9 @@ DPT at 5--6 years, JE in endemic districts and Vitamin A every 6 months from 9 m
   \foreach \c/\t in {rose/Central incisor, coral/Lateral incisor, honey/Canine, sea/First molar, ocean/Second molar}
   {\tikz\fill[\c!60] circle (4pt);~\t\quad}\par}\vspace{2.5mm}
 \newcommand\tooth[1]{\leavevmode{\color{theme}\bfseries #1}\ {\footnotesize\bbv{teeth.#1}}}
-{\renewcommand\arraystretch{1.65}\arrayrulecolor{theme!50}\rowcolors{2}{themelight!40}{white}
+{\renewcommand\arraystretch{1.65}\arrayrulecolor{theme!32}\rowcolors{2}{themelight!26}{white}
 \begin{tabularx}{\linewidth}{>{\bfseries}P{2.8cm} P{1.9cm} Y Y P{1.9cm} Y Y}\hline
-\rowcolor{theme}\thd{Tooth}&\thd{Upper age}&\thd{Right}&\thd{Left}&\thd{Lower age}&\thd{Right}&\thd{Left}\\\hline
+\rowcolor{themelight!85}\thd{Tooth}&\thd{Upper age}&\thd{Right}&\thd{Left}&\thd{Lower age}&\thd{Right}&\thd{Left}\\\hline
 Central incisor&8--12 m&\tooth{E}&\tooth{F}&6--10 m&\tooth{P}&\tooth{O}\\\hline
 Lateral incisor&9--13 m&\tooth{D}&\tooth{G}&10--16 m&\tooth{Q}&\tooth{N}\\\hline
 Canine&16--22 m&\tooth{C}&\tooth{H}&17--23 m&\tooth{R}&\tooth{M}\\\hline
